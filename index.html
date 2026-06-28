@@ -4,706 +4,897 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dillon Diandri — Instrumentation & Electrical Engineer</title>
-<meta name="description" content="Portofolio Dillon Diandri, Engineer Instrumentasi & Elektrikal lulusan PEM Akamigas Cepu. Kalibrasi instrumen, PLC, DCS, dan computer vision." />
+<meta name="description" content="Portofolio Dillon Diandri, I&E Engineer lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas. Spesialis kalibrasi ISO/IEC 17025, PLC, DCS, computer vision." />
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#080b12;
-    --panel:#0f1420;
-    --panel2:#151c2c;
-    --line:#1e2740;
-    --accent:#34e0c4;
-    --accent-dim:#1a8d7c;
-    --amber:#ffb547;
-    --text:#e6edf7;
-    --muted:#7d8aa3;
-    --mono:'JetBrains Mono','SF Mono',ui-monospace,'Cascadia Code',Consolas,monospace;
-    --sans:'Segoe UI',system-ui,-apple-system,sans-serif;
-    --sidebar-w:248px;
-  }
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  body::before{
-    content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(700px circle at 80% -5%,rgba(52,224,196,.07),transparent 60%),
-      radial-gradient(600px circle at 0% 100%,rgba(255,181,71,.05),transparent 55%);
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b12;
+  --panel:#0f1420;
+  --panel2:#151c2c;
+  --line:#1e2740;
+  --accent:#3b82f6;
+  --accent-dim:#1e40af;
+  --accent-light:#93c5fd;
+  --amber:#f59e0b;
+  --text:#e6edf7;
+  --muted:#7d8aa3;
+  --mono:'JetBrains Mono','SF Mono',ui-monospace,Consolas,monospace;
+  --sans:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --sidebar-w:256px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(700px circle at 80% -5%,rgba(59,130,246,.07),transparent 60%),
+    radial-gradient(600px circle at 0% 100%,rgba(245,158,11,.04),transparent 55%);
+}
+.shell{display:flex;min-height:100vh;position:relative;z-index:1}
 
-  /* ===== LAYOUT ===== */
-  .shell{display:flex;min-height:100vh;position:relative;z-index:1}
+/* SIDEBAR */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);
+  position:fixed;top:0;bottom:0;left:0;padding:28px 0;display:flex;flex-direction:column;
+  z-index:50;overflow-y:auto;transition:.25s;
+}
+.brand{padding:0 24px 24px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.brand-avatar{
+  width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:center top;
+  border:2px solid var(--accent);margin-bottom:14px;display:block;
+  box-shadow:0 0 0 4px rgba(59,130,246,.1);
+}
+.brand-status{
+  display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 rgba(59,130,246,.5);animation:pulse 2.2s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}
+  70%{box-shadow:0 0 0 7px rgba(59,130,246,0)}
+  100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}
+}
+.brand-name{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+.brand-role{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+.nav-section{padding:0 12px;flex:1}
+.nav-label{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#56627c;padding:0 12px;margin:16px 0 7px;
+}
+.nav-item{
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:8px;
+  color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;
+  transition:.15s;cursor:pointer;position:relative;
+}
+.nav-item svg{width:17px;height:17px;flex-shrink:0;stroke-width:1.8}
+.nav-item:hover{background:var(--panel2);color:var(--text)}
+.nav-item.active{background:rgba(59,130,246,.1);color:var(--accent)}
+.nav-item.active::before{
+  content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+  width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0;
+}
+.sidebar-foot{padding:16px 24px 0;border-top:1px solid var(--line);margin-top:12px}
+.sidebar-foot a{
+  display:flex;align-items:center;gap:10px;color:var(--muted);
+  text-decoration:none;font-size:.82rem;padding:7px 0;transition:.15s;
+}
+.sidebar-foot a:hover{color:var(--accent)}
+.sidebar-foot svg{width:16px;height:16px;stroke-width:1.8}
 
-  /* ===== SIDEBAR ===== */
-  .sidebar{
-    width:var(--sidebar-w);
-    flex-shrink:0;
-    background:var(--panel);
-    border-right:1px solid var(--line);
-    position:fixed;
-    top:0;bottom:0;left:0;
-    padding:28px 0;
-    display:flex;
-    flex-direction:column;
-    z-index:50;
-    overflow-y:auto;
-  }
-  .brand{padding:0 26px 26px;border-bottom:1px solid var(--line);margin-bottom:20px}
-  .brand-status{
-    display:inline-flex;align-items:center;gap:7px;
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--accent);margin-bottom:14px;
-  }
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 0 rgba(52,224,196,.5);animation:pulse 2.2s infinite}
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(52,224,196,.5)}
-    70%{box-shadow:0 0 0 7px rgba(52,224,196,0)}
-    100%{box-shadow:0 0 0 0 rgba(52,224,196,0)}
-  }
-  .brand-name{font-size:1.18rem;font-weight:800;letter-spacing:-.01em}
-  .brand-role{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+/* MAIN */
+.main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:40;background:rgba(8,11,18,.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.topbar-title{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+.topbar-title b{color:var(--text);font-weight:600}
+.topbar-meta{font-family:var(--mono);font-size:.72rem;color:#56627c}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);
+  border-radius:8px;padding:7px 9px;cursor:pointer}
+.menu-btn svg{width:20px;height:20px;display:block}
+.content{padding:44px;max-width:1100px}
+section{scroll-margin-top:80px;margin-bottom:70px}
 
-  /* ===== FOTO PROFIL (SIDEBAR AVATAR) ===== */
-  .brand-avatar{
-    width:64px;height:64px;border-radius:50%;
-    object-fit:cover;object-position:center top;
-    border:2px solid var(--accent);
-    margin-bottom:14px;display:block;
-    box-shadow:0 0 0 4px rgba(52,224,196,.08);
-  }
+/* HERO */
+.hero-grid{display:flex;gap:48px;align-items:flex-start}
+.hero-col-text{flex:1;min-width:0}
+.hero-col-photo{flex-shrink:0;width:220px}
+.hero-photo{
+  width:220px;height:220px;border-radius:18px;object-fit:cover;
+  border:1px solid var(--line);box-shadow:0 20px 50px -20px rgba(59,130,246,.3);
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);max-width:200px}
+.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.09;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1 .hl{color:var(--accent)}
+.hero-lead{font-size:1.01rem;color:#aab6cc;max-width:640px;margin-bottom:28px;line-height:1.72}
+.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:32px}
+.tag{
+  font-family:var(--mono);font-size:.73rem;color:var(--accent);
+  background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);
+  padding:5px 12px;border-radius:6px;
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border-radius:9px;
+  font-weight:600;font-size:.91rem;text-decoration:none;cursor:pointer;border:none;transition:.18s;
+}
+.btn svg{width:16px;height:16px;stroke-width:2}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(59,130,246,.5)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
-  .nav-section{padding:0 14px;flex:1}
-  .nav-label{
-    font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
-    text-transform:uppercase;color:#56627c;padding:0 12px;margin:18px 0 8px;
-  }
-  .nav-item{
-    display:flex;align-items:center;gap:12px;
-    padding:10px 12px;border-radius:8px;
-    color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;
-    transition:.16s;cursor:pointer;position:relative;
-  }
-  .nav-item svg{width:18px;height:18px;flex-shrink:0;stroke-width:1.8}
-  .nav-item:hover{background:var(--panel2);color:var(--text)}
-  .nav-item.active{background:rgba(52,224,196,.1);color:var(--accent)}
-  .nav-item.active::before{
-    content:'';position:absolute;left:-14px;top:50%;transform:translateY(-50%);
-    width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0;
-  }
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.metric{
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;
+  position:relative;overflow:hidden;
+}
+.metric::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent)}
+.metric-val{font-size:1.85rem;font-weight:800;color:var(--accent);font-family:var(--mono);letter-spacing:-.02em}
+.metric-label{font-size:.77rem;color:var(--muted);margin-top:4px}
 
-  .sidebar-foot{padding:18px 26px 0;border-top:1px solid var(--line);margin-top:14px}
-  .sidebar-foot a{
-    display:flex;align-items:center;gap:10px;color:var(--muted);
-    text-decoration:none;font-size:.82rem;padding:7px 0;transition:.16s;
-  }
-  .sidebar-foot a:hover{color:var(--accent)}
-  .sidebar-foot svg{width:16px;height:16px;stroke-width:1.8}
+/* SECTION HEADERS */
+.sec-head{margin-bottom:28px}
+.sec-num{font-family:var(--mono);font-size:.7rem;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase}
+.sec-title{font-size:1.55rem;font-weight:800;letter-spacing:-.01em;margin-top:4px}
+.sec-sub{color:var(--muted);font-size:.91rem;margin-top:6px;max-width:600px}
 
-  /* ===== MAIN ===== */
-  .main{margin-left:var(--sidebar-w);flex:1;min-width:0}
-  .topbar{
-    position:sticky;top:0;z-index:40;
-    background:rgba(8,11,18,.82);backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
-    padding:16px 40px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .topbar-title{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.04em}
-  .topbar-title b{color:var(--text);font-weight:600}
-  .topbar-meta{font-family:var(--mono);font-size:.72rem;color:#56627c}
-  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);
-    border-radius:8px;padding:7px 9px;cursor:pointer}
-  .menu-btn svg{width:20px;height:20px;display:block}
+/* CARDS */
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:26px 28px;transition:.2s;
+}
+.card+.card{margin-top:18px}
+.card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.card-org{font-size:1.1rem;font-weight:700}
+.card-role{color:var(--accent);font-size:.9rem;font-family:var(--mono);margin-top:3px}
+.card-badge{
+  font-family:var(--mono);font-size:.7rem;color:var(--amber);
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
+  padding:4px 11px;border-radius:6px;white-space:nowrap;flex-shrink:0;
+}
+.card-desc{color:#9fabc2;font-size:.91rem;margin-top:14px;line-height:1.72}
+.card-list{list-style:none;margin-top:14px;display:grid;gap:9px}
+.card-list li{position:relative;padding-left:22px;color:#9fabc2;font-size:.89rem;line-height:1.65}
+.card-list li::before{content:'▸';position:absolute;left:0;top:1px;color:var(--accent);font-size:.78rem}
+.card-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.card-photo{
+  width:160px;height:110px;object-fit:cover;border-radius:10px;
+  border:1px solid var(--line);transition:.2s;cursor:pointer;
+}
+.card-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
+.meta-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-family:var(--mono);font-size:.79rem}
+.meta-row span{color:var(--muted)}
+.meta-row b{color:var(--text);font-weight:600}
 
-  .content{padding:40px;max-width:1080px}
-  section{scroll-margin-top:80px;margin-bottom:64px}
+/* PROJECT */
+.project{
+  background:linear-gradient(160deg,var(--panel2),var(--panel));
+  border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:32px;
+}
+.project-tag{font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase}
+.project h3{font-size:1.28rem;font-weight:800;margin:8px 0 12px}
+.project>p{color:#9fabc2;font-size:.92rem;margin-bottom:20px;line-height:1.72}
+.project-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:20px 0}
+.project-photo{
+  width:100%;height:160px;object-fit:cover;border-radius:12px;
+  border:1px solid rgba(59,130,246,.2);cursor:pointer;transition:.2s;
+}
+.project-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.spec{background:rgba(8,11,18,.5);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.spec-k{font-family:var(--mono);font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.spec-v{font-weight:700;margin-top:4px;font-size:.93rem}
+.result-bar{display:flex;gap:20px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line)}
+.result{font-family:var(--mono);font-size:.82rem}
+.result b{color:var(--accent);font-size:1.05rem;display:block}
+.result span{color:var(--muted);font-size:.71rem}
 
-  /* ===== HERO ===== */
-  .hero-grid{display:flex;gap:48px;align-items:flex-start}
-  .hero-col-text{flex:1;min-width:0}
-  .hero-col-photo{flex-shrink:0;width:220px}
-  .hero-photo{
-    width:220px;height:220px;border-radius:18px;object-fit:cover;
-    border:1px solid var(--line);
-    box-shadow:0 20px 50px -20px rgba(52,224,196,.25);
-  }
-  @media(max-width:880px){
-    .hero-grid{flex-direction:column-reverse}
-    .hero-col-photo{width:140px}
-    .hero-photo{width:140px;height:140px}
-  }
-  .hero-eyebrow{
-    font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
-  }
-  .hero-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);max-width:200px}
-  .hero h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:18px}
-  .hero h1 .hl{color:var(--accent)}
-  .hero-lead{font-size:1.05rem;color:#aab6cc;max-width:640px;margin-bottom:28px}
-  .hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:32px}
-  .tag{
-    font-family:var(--mono);font-size:.74rem;color:var(--accent);
-    background:rgba(52,224,196,.08);border:1px solid rgba(52,224,196,.22);
-    padding:5px 12px;border-radius:6px;
-  }
-  .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    padding:12px 24px;border-radius:9px;font-weight:600;font-size:.92rem;
-    text-decoration:none;cursor:pointer;border:none;transition:.18s;
-  }
-  .btn svg{width:17px;height:17px;stroke-width:2}
-  .btn-primary{background:var(--accent);color:#04201b}
-  .btn-primary:hover{background:#52f0d6;transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(52,224,196,.5)}
-  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.gallery-item{
+  position:relative;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);cursor:pointer;background:var(--panel);
+  transition:.22s;aspect-ratio:4/3;
+}
+.gallery-item:hover{border-color:var(--accent);transform:translateY(-3px);
+  box-shadow:0 12px 32px -12px rgba(59,130,246,.3)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(8,11,18,.92));
+  padding:28px 12px 12px;font-size:.74rem;color:var(--text);
+  font-family:var(--mono);line-height:1.4;
+}
+.gallery-overlay{
+  position:absolute;inset:0;background:rgba(59,130,246,.08);
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:.22s;
+}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay svg{width:32px;height:32px;color:var(--accent)}
 
-  /* ===== METRICS ===== */
-  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
-  .metric{
-    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;
-    position:relative;overflow:hidden;
-  }
-  .metric::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-    background:linear-gradient(90deg,var(--accent),transparent)}
-  .metric-val{font-size:1.9rem;font-weight:800;color:var(--accent);font-family:var(--mono);letter-spacing:-.02em}
-  .metric-label{font-size:.78rem;color:var(--muted);margin-top:4px}
+/* LIGHTBOX */
+.lb{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(5,8,15,.95);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;
+}
+.lb.open{display:flex}
+.lb-inner{
+  position:relative;max-width:92vw;max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.lb-img{max-width:88vw;max-height:76vh;border-radius:12px;border:1px solid var(--line);
+  object-fit:contain;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.lb-caption{font-family:var(--mono);font-size:.83rem;color:var(--accent-light);text-align:center;max-width:600px;padding:0 60px}
+.lb-counter{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
+.lb-close{
+  position:fixed;top:20px;right:24px;background:var(--panel2);border:1px solid var(--line);
+  color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;
+}
+.lb-close:hover{border-color:var(--accent);color:var(--accent)}
+.lb-prev,.lb-next{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:var(--panel2);border:1px solid var(--line);color:var(--text);
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;
+}
+.lb-prev{left:20px}.lb-next{right:20px}
+.lb-prev:hover,.lb-next:hover{border-color:var(--accent);color:var(--accent)}
+.lb-prev svg,.lb-next svg,.lb-close svg{width:20px;height:20px;stroke-width:2;display:block}
 
-  /* ===== SECTION HEADERS ===== */
-  .sec-head{margin-bottom:26px}
-  .sec-num{font-family:var(--mono);font-size:.72rem;color:var(--accent-dim);letter-spacing:.1em}
-  .sec-title{font-size:1.55rem;font-weight:800;letter-spacing:-.01em;margin-top:4px}
-  .sec-sub{color:var(--muted);font-size:.92rem;margin-top:6px;max-width:560px}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
+.skill-card-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.skill-card-head svg{width:20px;height:20px;color:var(--accent);stroke-width:1.8;flex-shrink:0}
+.skill-card-head h4{font-size:.98rem;font-weight:700}
+.skill{margin-bottom:14px}
+.skill:last-child{margin-bottom:0}
+.skill-top{display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:6px}
+.skill-top span:last-child{font-family:var(--mono);color:var(--accent);font-size:.77rem}
+.skill-track{height:5px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent-dim),var(--accent));
+  border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-family:var(--mono);font-size:.75rem;color:#9fabc2;background:var(--panel2);
+  border:1px solid var(--line);padding:5px 11px;border-radius:6px}
 
-  /* ===== CARDS ===== */
-  .card{
-    background:var(--panel);border:1px solid var(--line);border-radius:14px;
-    padding:26px 28px;transition:.2s;
-  }
-  .card+.card{margin-top:18px}
-  .card:hover{border-color:rgba(52,224,196,.3);transform:translateY(-2px)}
-  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-  .card-org{font-size:1.12rem;font-weight:700}
-  .card-role{color:var(--accent);font-size:.92rem;font-family:var(--mono);margin-top:3px}
-  .card-badge{
-    font-family:var(--mono);font-size:.7rem;color:var(--amber);
-    background:rgba(255,181,71,.1);border:1px solid rgba(255,181,71,.25);
-    padding:4px 11px;border-radius:6px;white-space:nowrap;
-  }
-  .card-desc{color:#9fabc2;font-size:.92rem;margin-top:14px}
+/* CONTACT */
+.contact-box{
+  background:linear-gradient(150deg,rgba(59,130,246,.07),var(--panel));
+  border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:42px;text-align:center;
+}
+.contact-box h3{font-size:1.45rem;font-weight:800;margin-bottom:10px}
+.contact-box>p{color:var(--muted);max-width:460px;margin:0 auto 26px;font-size:.93rem}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+.clink{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;
+  background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);text-decoration:none;font-size:.87rem;transition:.18s;
+}
+.clink svg{width:17px;height:17px;color:var(--accent);stroke-width:1.8;flex-shrink:0}
+.clink:hover{border-color:var(--accent);transform:translateY(-2px)}
+.clink-note{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:18px}
 
-  /* ===== FOTO DOKUMENTASI (di dalam card pengalaman / project) ===== */
-  .card-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-  .card-photo{
-    width:160px;height:110px;object-fit:cover;border-radius:10px;
-    border:1px solid var(--line);transition:.2s;
-  }
-  .card-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .project-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 22px}
-  .project-photo{
-    width:100%;height:150px;object-fit:cover;border-radius:12px;
-    border:1px solid rgba(52,224,196,.2);
-  }
-  @media(max-width:480px){
-    .card-photo{width:130px;height:90px}
-  }
-  .card-list{list-style:none;margin-top:16px;display:grid;gap:9px}
-  .card-list li{position:relative;padding-left:22px;color:#9fabc2;font-size:.9rem}
-  .card-list li::before{
-    content:'▸';position:absolute;left:0;top:0;color:var(--accent);font-size:.8rem;
-  }
+footer{
+  text-align:center;color:#56627c;font-size:.78rem;font-family:var(--mono);
+  padding:28px 40px;border-top:1px solid var(--line);margin-left:var(--sidebar-w);
+}
+.reveal{opacity:0;transform:translateY(22px);transition:.75s cubic-bezier(.16,1,.3,1)}
+.reveal.show{opacity:1;transform:none}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:45}
 
-  /* ===== EDUCATION META ===== */
-  .meta-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px;font-family:var(--mono);font-size:.8rem}
-  .meta-row span{color:var(--muted)}
-  .meta-row b{color:var(--text);font-weight:600}
-
-  /* ===== PROJECT (featured) ===== */
-  .project{
-    background:linear-gradient(160deg,var(--panel2),var(--panel));
-    border:1px solid rgba(52,224,196,.2);border-radius:16px;padding:30px;
-  }
-  .project-tag{font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase}
-  .project h3{font-size:1.3rem;font-weight:800;margin:8px 0 12px}
-  .project p{color:#9fabc2;font-size:.94rem;margin-bottom:20px}
-  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
-  .spec{background:rgba(8,11,18,.5);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-  .spec-k{font-family:var(--mono);font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .spec-v{font-weight:700;margin-top:4px;font-size:.95rem}
-  .result-bar{display:flex;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line)}
-  .result{font-family:var(--mono);font-size:.82rem}
-  .result b{color:var(--accent);font-size:1.05rem;display:block}
-  .result span{color:var(--muted);font-size:.72rem}
-
-  /* ===== SKILLS ===== */
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-  .skill-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
-  .skill-card-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
-  .skill-card-head svg{width:20px;height:20px;color:var(--accent);stroke-width:1.8}
-  .skill-card-head h4{font-size:1rem;font-weight:700}
-  .skill{margin-bottom:14px}
-  .skill:last-child{margin-bottom:0}
-  .skill-top{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:6px}
-  .skill-top span:last-child{font-family:var(--mono);color:var(--accent);font-size:.78rem}
-  .skill-track{height:5px;background:var(--panel2);border-radius:4px;overflow:hidden}
-  .skill-fill{height:100%;background:linear-gradient(90deg,var(--accent-dim),var(--accent));
-    border-radius:4px;width:0;transition:width 1.1s cubic-bezier(.16,1,.3,1)}
-
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .chip{font-family:var(--mono);font-size:.76rem;color:#9fabc2;background:var(--panel2);
-    border:1px solid var(--line);padding:5px 11px;border-radius:6px}
-
-  /* ===== CONTACT ===== */
-  .contact{
-    background:linear-gradient(150deg,rgba(52,224,196,.07),var(--panel));
-    border:1px solid rgba(52,224,196,.2);border-radius:16px;padding:36px;text-align:center;
-  }
-  .contact h3{font-size:1.5rem;font-weight:800;margin-bottom:10px}
-  .contact p{color:var(--muted);max-width:440px;margin:0 auto 24px}
-  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
-  .clink{
-    display:inline-flex;align-items:center;gap:9px;padding:11px 20px;
-    background:var(--panel);border:1px solid var(--line);border-radius:9px;
-    color:var(--text);text-decoration:none;font-size:.88rem;transition:.18s;
-  }
-  .clink svg{width:17px;height:17px;color:var(--accent);stroke-width:1.8}
-  .clink:hover{border-color:var(--accent);transform:translateY(-2px)}
-
-  footer{text-align:center;color:#56627c;font-size:.8rem;font-family:var(--mono);
-    padding:30px 40px;border-top:1px solid var(--line);margin-left:var(--sidebar-w)}
-
-  .reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.16,1,.3,1)}
-  .reveal.show{opacity:1;transform:none}
-
-  /* ===== BACKDROP (mobile) ===== */
-  .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:45}
-
-  /* ===== RESPONSIVE ===== */
-  @media(max-width:880px){
-    :root{--sidebar-w:0px}
-    .sidebar{transform:translateX(-100%);transition:.25s;width:248px}
-    .sidebar.open{transform:none}
-    .main{margin-left:0}
-    .menu-btn{display:block}
-    .topbar{padding:14px 20px}
-    .content{padding:28px 20px}
-    .metrics{grid-template-columns:repeat(2,1fr)}
-    .backdrop.show{display:block}
-    footer{margin-left:0}
-  }
-  @media(max-width:480px){
-    .metrics{grid-template-columns:1fr}
-    .content{padding:24px 16px}
-    .hero-cta .btn{flex:1;justify-content:center}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-    .reveal{opacity:1;transform:none}
-  }
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+/* RESPONSIVE */
+@media(max-width:900px){
+  :root{--sidebar-w:0px}
+  .sidebar{transform:translateX(-100%);width:256px}
+  .sidebar.open{transform:none}
+  .main{margin-left:0}
+  .menu-btn{display:block}
+  .topbar{padding:14px 20px}
+  .content{padding:28px 20px}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .backdrop.show{display:block}
+  footer{margin-left:0}
+}
+@media(max-width:720px){
+  .hero-grid{flex-direction:column-reverse}
+  .hero-col-photo{width:140px}
+  .hero-photo{width:140px;height:140px}
+}
+@media(max-width:480px){
+  .metrics{grid-template-columns:1fr}
+  .content{padding:22px 16px}
+  .hero-cta .btn{flex:1;justify-content:center}
+  .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 </style>
 </head>
 <body>
 <div class="shell">
 
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="images/profil.jpg" alt="Foto profil Dillon Diandri" class="brand-avatar">
-      <div class="brand-status"><span class="dot"></span>Open to work</div>
-      <div class="brand-name">Dillon Diandri</div>
-      <div class="brand-role">I&amp;E Engineer · Oil &amp; Gas</div>
-    </div>
-    <nav class="nav-section">
-      <div class="nav-label">Dashboard</div>
-      <a class="nav-item active" href="#overview" data-sec="overview">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-        Overview
-      </a>
-      <a class="nav-item" href="#about" data-sec="about">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-        Profil
-      </a>
-      <div class="nav-label">Pengalaman</div>
-      <a class="nav-item" href="#experience" data-sec="experience">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        Riwayat Kerja
-      </a>
-      <a class="nav-item" href="#education" data-sec="education">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg>
-        Pendidikan
-      </a>
-      <a class="nav-item" href="#project" data-sec="project">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6l-7 7 2 2 7-7a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5z"/></svg>
-        Tugas Akhir
-      </a>
-      <div class="nav-label">Kompetensi</div>
-      <a class="nav-item" href="#skills" data-sec="skills">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Keahlian
-      </a>
-      <a class="nav-item" href="#contact" data-sec="contact">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Kontak
-      </a>
-    </nav>
-    <div class="sidebar-foot">
-      <a href="https://www.linkedin.com/in/dillondiandri" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="mailto:dillon.diandri@yahoo.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Email
-      </a>
-    </div>
-  </aside>
-  <div class="backdrop" id="backdrop"></div>
-
-  <!-- ===== MAIN ===== -->
-  <div class="main">
-    <div class="topbar">
-      <button class="menu-btn" id="menuBtn" aria-label="Buka menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <div class="topbar-title">portfolio / <b id="crumb">overview</b></div>
-      <div class="topbar-meta">PEM Akamigas · Cepu, ID</div>
-    </div>
-
-    <div class="content">
-
-      <!-- OVERVIEW -->
-      <section id="overview" class="hero reveal">
-        <div class="hero-grid">
-          <div class="hero-col-text">
-            <div class="hero-eyebrow">Instrumentation &amp; Electrical Engineer</div>
-            <h1>Presisi pengukuran untuk <span class="hl">keandalan</span> operasi kilang.</h1>
-            <p class="hero-lead">
-              Lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas dengan pengalaman kalibrasi
-              instrumen berstandar ISO/IEC 17025, pemrograman PLC &amp; DCS, serta pengembangan sistem
-              computer vision berbasis Raspberry Pi. Terbuka untuk peran I&amp;E Engineer di sektor migas, siap relokasi nasional.
-            </p>
-            <div class="hero-tags">
-              <span class="tag">Kalibrasi Instrumen</span>
-              <span class="tag">PLC Siemens S7</span>
-              <span class="tag">DCS Yokogawa Centum VP</span>
-              <span class="tag">Python / OpenCV</span>
-              <span class="tag">K3 Migas</span>
-            </div>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#contact">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Hubungi Saya
-              </a>
-              <a class="btn btn-ghost" href="#experience">Lihat Pengalaman</a>
-            </div>
-          </div>
-          <div class="hero-col-photo">
-            <img src="images/profil.jpg" alt="Foto Dillon Diandri" class="hero-photo">
-          </div>
-        </div>
-
-        <div class="metrics">
-          <div class="metric"><div class="metric-val">6+</div><div class="metric-label">Bulan pengalaman kalibrasi</div></div>
-          <div class="metric"><div class="metric-val">3</div><div class="metric-label">Internship industri migas</div></div>
-          <div class="metric"><div class="metric-val">D-IV</div><div class="metric-label">Teknik Instrumentasi Kilang</div></div>
-          <div class="metric"><div class="metric-val">630</div><div class="metric-label">Skor TOEIC</div></div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="reveal">
-        <div class="sec-head">
-          <div class="sec-num">01 — PROFIL</div>
-          <h2 class="sec-title">Tentang Saya</h2>
-          <p class="sec-sub">Latar belakang, fokus teknis, dan apa yang saya bawa ke meja kerja.</p>
-        </div>
-        <div class="card">
-          <p class="card-desc" style="margin-top:0">
-            Saya Dillon Diandri, engineer instrumentasi &amp; elektrikal lulusan Diploma IV PEM Akamigas Cepu
-            (Politeknik Energi dan Mineral di bawah Kementerian ESDM). Selama studi dan tiga periode magang
-            di lingkungan kilang dan jasa energi, saya membangun fondasi kuat pada sistem pengukuran, kontrol
-            proses, kalibrasi instrumen lapangan, serta penerapan prosedur keselamatan migas.
-          </p>
-          <p class="card-desc">
-            Di luar pekerjaan inti instrumentasi, saya aktif mengembangkan sistem embedded dan computer vision —
-            dari PLC dan DCS sampai integrasi sensor IoT berbasis ESP32 dan pengolahan citra OpenCV di Raspberry Pi.
-            Saya terbiasa bekerja teliti, mendokumentasikan hasil secara rapi, dan menyelesaikan masalah teknis sampai tuntas.
-          </p>
-          <div class="meta-row">
-            <span>Domisili: <b>Cepu, Jawa Tengah</b></span>
-            <span>Relokasi: <b>Nasional</b></span>
-            <span>NIM: <b>221440004</b></span>
-            <span>Status: <b>Open to work</b></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- EXPERIENCE -->
-      <section id="experience" class="reveal">
-        <div class="sec-head">
-          <div class="sec-num">02 — PENGALAMAN</div>
-          <h2 class="sec-title">Riwayat Kerja</h2>
-          <p class="sec-sub">Pengalaman langsung di fasilitas kilang dan jasa energi nasional.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div>
-              <div class="card-org">PT PGAS Solution</div>
-              <div class="card-role">Intern — Teknik Instrumentasi &amp; Kalibrasi</div>
-            </div>
-            <span class="card-badge">Jul – Des 2025 · 6 Bulan</span>
-          </div>
-          <p class="card-desc">
-            Anak perusahaan PT Perusahaan Gas Negara (PGN) Tbk. Terlibat langsung dalam kegiatan kalibrasi
-            instrumen pengukuran berstandar ISO/IEC 17025 di laboratorium dan fasilitas operasional.
-          </p>
-          <ul class="card-list">
-            <li>Kalibrasi pressure gauge menggunakan Additel 920 sesuai prosedur standar</li>
-            <li>Kalibrasi instrumen temperatur dengan oil bath WIKA Microbath CTB9100 / CTB9500</li>
-            <li>Kalibrasi Electronic Volume Corrector (EVC) untuk metering gas</li>
-            <li>Penyusunan laporan dan sertifikat kalibrasi sesuai ketertelusuran metrologi</li>
-            <li>Penerapan prosedur K3 di lingkungan industri gas bumi</li>
-          </ul>
-          <div class="card-photos">
-            <img src="images/magang-pgas-1.jpg" alt="Dokumentasi kalibrasi di PT PGAS Solution" class="card-photo">
-            <img src="images/magang-pgas-2.jpg" alt="Dokumentasi kegiatan magang PT PGAS Solution" class="card-photo">
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div>
-              <div class="card-org">PT Kilang Pertamina Internasional</div>
-              <div class="card-role">Intern — Unit RCC Balongan &amp; Cilacap</div>
-            </div>
-            <span class="card-badge">Magang Kilang</span>
-          </div>
-          <p class="card-desc">
-            Magang di lingkungan kilang pengolahan minyak, mengenal sistem instrumentasi dan kontrol proses
-            pada unit Residue Catalytic Cracking (RCC) serta operasi kilang skala besar.
-          </p>
-          <ul class="card-list">
-            <li>Mempelajari sistem kontrol proses dan instrumentasi lapangan unit kilang</li>
-            <li>Membaca dan menginterpretasi P&amp;ID serta loop instrumentasi</li>
-            <li>Memahami integrasi DCS pada operasi unit proses</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div>
-              <div class="card-org">SNTEEM — Publikasi Ilmiah</div>
-              <div class="card-role">Penulis Paper Kalibrasi</div>
-            </div>
-            <span class="card-badge">Konferensi</span>
-          </div>
-          <p class="card-desc">
-            Mempresentasikan paper berjudul <b style="color:var(--text)">"Kalibrasi Temperature Gauge Menggunakan
-            Oil Bath di Industri Kilang"</b> pada Seminar Nasional Teknik Energi dan Mineral (SNTEEM).
-          </p>
-        </div>
-      </section>
-
-      <!-- EDUCATION -->
-      <section id="education" class="reveal">
-        <div class="sec-head">
-          <div class="sec-num">03 — PENDIDIKAN</div>
-          <h2 class="sec-title">Latar Belakang Akademik</h2>
-          <p class="sec-sub">Pendidikan vokasi terapan yang berfokus pada sektor energi nasional.</p>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <div>
-              <div class="card-org">PEM Akamigas Cepu</div>
-              <div class="card-role">D-IV Teknik Instrumentasi Kilang</div>
-            </div>
-            <span class="card-badge">Tingkat Akhir</span>
-          </div>
-          <p class="card-desc">
-            Politeknik Energi dan Mineral Akamigas di bawah Kementerian ESDM, fokus mencetak SDM unggul
-            sektor energi. Kurikulum mencakup sistem pengukuran &amp; kontrol, kalibrasi instrumen lapangan,
-            PLC &amp; DCS, SCADA, elektronika industri, pneumatik–hidrolik, dan keselamatan kerja migas.
-          </p>
-          <div class="meta-row">
-            <span>Jurusan: <b>Instrumentasi Kilang</b></span>
-            <span>Jenjang: <b>Diploma IV</b></span>
-            <span>Lokasi: <b>Cepu, Jawa Tengah</b></span>
-            <span>Naungan: <b>Kementerian ESDM</b></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECT -->
-      <section id="project" class="reveal">
-        <div class="sec-head">
-          <div class="sec-num">04 — TUGAS AKHIR</div>
-          <h2 class="sec-title">Proyek Unggulan</h2>
-          <p class="sec-sub">Sistem pengukuran sphericity pasir proppant berbasis computer vision.</p>
-        </div>
-        <div class="project">
-          <div class="project-tag">Capstone · Computer Vision · Raspberry Pi</div>
-          <h3>Rancang Bangun Sistem Pengolahan Citra Sphericity Pasir Proppant</h3>
-          <p>
-            Sistem pengukuran tingkat kebulatan (sphericity) butiran pasir proppant secara otomatis menggunakan
-            pengolahan citra digital. Mengikuti standar API RP 19C dengan formula sphericity (D<sub>min</sub>/D<sub>max</sub>)×100%,
-            dikategorikan Excellent (≥90), Good (80–89), Fair (70–79), dan Poor (&lt;70). Dibangun modular dengan
-            Python &amp; OpenCV pada Raspberry Pi 5.
-          </p>
-          <div class="project-photos">
-            <img src="images/proppant-alat.jpg" alt="Perangkat Raspberry Pi 5 dan kamera HQ untuk sistem sphericity" class="project-photo">
-            <img src="images/proppant-deteksi.jpg" alt="Hasil deteksi partikel proppant dengan garis D-max dan D-min" class="project-photo">
-          </div>
-          <div class="spec-grid">
-            <div class="spec"><div class="spec-k">Prosesor</div><div class="spec-v">Raspberry Pi 5</div></div>
-            <div class="spec"><div class="spec-k">Kamera</div><div class="spec-v">IMX477 HQ Camera</div></div>
-            <div class="spec"><div class="spec-k">Display</div><div class="spec-v">Waveshare 4.3" DSI</div></div>
-            <div class="spec"><div class="spec-k">Stack</div><div class="spec-v">Python · OpenCV</div></div>
-            <div class="spec"><div class="spec-k">Standar</div><div class="spec-v">API RP 19C</div></div>
-            <div class="spec"><div class="spec-k">Segmentasi</div><div class="spec-v">5 Metode Adaptif</div></div>
-          </div>
-          <div class="result-bar">
-            <div class="result"><b>75.55%</b><span>PROPPANT 1 (N=53)</span></div>
-            <div class="result"><b>78.43%</b><span>PROPPANT 2 (N=49)</span></div>
-            <div class="result"><b>5</b><span>METODE SEGMENTASI</span></div>
-            <div class="result"><b>4</b><span>MODUL PROGRAM</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section id="skills" class="reveal">
-        <div class="sec-head">
-          <div class="sec-num">05 — KOMPETENSI</div>
-          <h2 class="sec-title">Keahlian Teknis</h2>
-          <p class="sec-sub">Kemampuan yang dikembangkan melalui pendidikan vokasi dan pengalaman lapangan.</p>
-        </div>
-        <div class="skills-grid">
-
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
-              <h4>Kalibrasi &amp; Metrologi</h4>
-            </div>
-            <div class="skill"><div class="skill-top"><span>Kalibrasi Pressure Gauge</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>Kalibrasi Temperature (Oil Bath)</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>ISO/IEC 17025 &amp; Sertifikat</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" data-w="78"></div></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
-              <h4>Kontrol &amp; Otomasi</h4>
-            </div>
-            <div class="skill"><div class="skill-top"><span>PLC Siemens S7-1200/1500</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>DCS Yokogawa Centum VP</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>Pembacaan P&amp;ID &amp; Loop</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              <h4>Embedded &amp; Computer Vision</h4>
-            </div>
-            <div class="skill"><div class="skill-top"><span>Python &amp; OpenCV</span><span>83%</span></div><div class="skill-track"><div class="skill-fill" data-w="83"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>Raspberry Pi &amp; ESP32</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>IoT (MQTT · Node-RED · PID)</span><span>76%</span></div><div class="skill-track"><div class="skill-fill" data-w="76"></div></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <h4>Keselamatan &amp; Dokumentasi</h4>
-            </div>
-            <div class="skill"><div class="skill-top"><span>K3 Industri Migas</span><span>87%</span></div><div class="skill-track"><div class="skill-fill" data-w="87"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>Prosedur Kerja Aman</span><span>83%</span></div><div class="skill-track"><div class="skill-fill" data-w="83"></div></div></div>
-            <div class="skill"><div class="skill-top"><span>Laporan &amp; Karya Tulis Ilmiah</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-          </div>
-
-        </div>
-        <div class="chips" style="margin-top:22px">
-          <span class="chip">Additel 920</span>
-          <span class="chip">WIKA Microbath</span>
-          <span class="chip">Siemens TIA Portal</span>
-          <span class="chip">Yokogawa Centum VP</span>
-          <span class="chip">OpenCV</span>
-          <span class="chip">Node-RED</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Nextion HMI</span>
-          <span class="chip">PZEM-016</span>
-          <span class="chip">Git</span>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="reveal">
-        <div class="contact">
-          <h3>Mari Terhubung</h3>
-          <p>Terbuka untuk peluang sebagai Instrumentation &amp; Electrical Engineer di sektor migas. Siap relokasi nasional.</p>
-          <div class="contact-links">
-            <a class="clink" href="mailto:dillon.diandri@yahoo.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              dillon.diandri@yahoo.com
-            </a>
-            <a class="clink" href="https://www.linkedin.com/in/dillondiandri" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
-            <span class="clink" style="cursor:default">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Cepu, Jawa Tengah
-            </span>
-          </div>
-        </div>
-      </section>
-
-    </div>
-    <footer>© 2026 Dillon Diandri · Instrumentation &amp; Electrical Engineer</footer>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <img src="images/profil.jpg" alt="Foto profil Dillon Diandri" class="brand-avatar">
+    <div class="brand-status"><span class="dot"></span>Open to Work</div>
+    <div class="brand-name">Dillon Diandri</div>
+    <div class="brand-role">I&amp;E Engineer · Oil &amp; Gas</div>
   </div>
+  <nav class="nav-section">
+    <div class="nav-label">Dashboard</div>
+    <a class="nav-item active" href="#overview" data-sec="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+      Overview
+    </a>
+    <a class="nav-item" href="#about" data-sec="about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+      Profil
+    </a>
+    <div class="nav-label">Pengalaman</div>
+    <a class="nav-item" href="#experience" data-sec="experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      Riwayat Kerja
+    </a>
+    <a class="nav-item" href="#education" data-sec="education">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg>
+      Pendidikan
+    </a>
+    <a class="nav-item" href="#project" data-sec="project">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6l-7 7 2 2 7-7a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5z"/></svg>
+      Tugas Akhir
+    </a>
+    <div class="nav-label">Kompetensi</div>
+    <a class="nav-item" href="#certificates" data-sec="certificates">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      Sertifikat
+    </a>
+    <a class="nav-item" href="#skills" data-sec="skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Keahlian
+    </a>
+    <a class="nav-item" href="#contact" data-sec="contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Kontak
+    </a>
+  </nav>
+  <div class="sidebar-foot">
+    <a href="https://www.linkedin.com/in/dillondiandri" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:diandridillon@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+  </div>
+</aside>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="topbar-title">portfolio / <b id="crumb">overview</b></div>
+    <div class="topbar-meta">PEM Akamigas · Cepu, ID</div>
+  </div>
+
+  <div class="content">
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="hero reveal">
+      <div class="hero-grid">
+        <div class="hero-col-text">
+          <div class="hero-eyebrow">Instrumentation &amp; Electrical Engineer</div>
+          <h1>Presisi pengukuran untuk <span class="hl">keandalan</span> sistem energi.</h1>
+          <p class="hero-lead">
+            Lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas dengan pengalaman kalibrasi instrumen
+            berstandar ISO/IEC 17025, pemrograman PLC &amp; DCS, serta pengembangan sistem computer vision
+            berbasis Raspberry Pi. Bersertifikat BNSP Teknisi Instrumentasi, K3 Migas, dan IWCF Well Control.
+            Terbuka untuk peran I&amp;E Engineer di sektor migas — siap relokasi nasional.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">Kalibrasi ISO/IEC 17025</span>
+            <span class="tag">PLC Siemens S7</span>
+            <span class="tag">DCS Yokogawa</span>
+            <span class="tag">Python / OpenCV</span>
+            <span class="tag">BNSP Instrumentasi</span>
+            <span class="tag">K3 Migas</span>
+            <span class="tag">IWCF Well Control</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Hubungi Saya
+            </a>
+            <a class="btn btn-ghost" href="#experience">Lihat Pengalaman</a>
+          </div>
+        </div>
+        <div class="hero-col-photo">
+          <img src="images/profil.jpg" alt="Foto Dillon Diandri" class="hero-photo">
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">6+</div><div class="metric-label">Bulan kalibrasi ISO/IEC 17025</div></div>
+        <div class="metric"><div class="metric-val">3×</div><div class="metric-label">Internship industri migas</div></div>
+        <div class="metric"><div class="metric-val">5</div><div class="metric-label">Sertifikat kompetensi</div></div>
+        <div class="metric"><div class="metric-val">630</div><div class="metric-label">Skor TOEIC</div></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">01 — PROFIL</div>
+        <h2 class="sec-title">Tentang Saya</h2>
+        <p class="sec-sub">Latar belakang, fokus teknis, dan nilai yang saya bawa ke lingkungan kerja.</p>
+      </div>
+      <div class="card">
+        <p class="card-desc" style="margin-top:0">
+          Saya <strong style="color:var(--text)">Dillon Diandri</strong>, engineer instrumentasi &amp; elektrikal lulusan
+          Diploma IV PEM Akamigas Cepu — Politeknik Energi dan Mineral di bawah naungan Kementerian ESDM, salah satu
+          lembaga vokasi terkemuka di sektor energi Indonesia. Selama empat tahun studi dan tiga periode magang di
+          lingkungan kilang dan jasa energi nasional, saya membangun fondasi kuat pada sistem pengukuran, kontrol
+          proses, kalibrasi instrumen lapangan, serta prosedur keselamatan migas.
+        </p>
+        <p class="card-desc">
+          Pengalaman utama saya mencakup kalibrasi instrumen berstandar <strong style="color:var(--text)">ISO/IEC 17025</strong>
+          di anak perusahaan PGN (PT PGAS Solution) selama 6 bulan penuh — mulai dari pressure gauge, temperature gauge,
+          hingga Electronic Volume Corrector untuk custody transfer gas bumi. Saya juga pernah magang di unit RCC
+          <strong style="color:var(--text)">PT Kilang Pertamina Internasional</strong>, tempat saya mengenal langsung
+          sistem instrumentasi dan DCS kilang skala besar.
+        </p>
+        <p class="card-desc">
+          Di sisi teknologi, tugas akhir saya membangun sistem computer vision berbasis Raspberry Pi 5 untuk mengukur
+          sphericity pasir proppant sesuai standar API RP 19C — menggabungkan Python, OpenCV, dan desain perangkat keras
+          modular. Saya percaya bahwa keandalan sistem energi dimulai dari ketepatan pengukuran.
+        </p>
+        <div class="meta-row">
+          <span>Domisili: <b>Cepu, Jawa Tengah</b></span>
+          <span>Relokasi: <b>Siap Nasional</b></span>
+          <span>NIM: <b>221440004</b></span>
+          <span>Status: <b>Open to Work</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">02 — PENGALAMAN</div>
+        <h2 class="sec-title">Riwayat Kerja</h2>
+        <p class="sec-sub">Pengalaman langsung di fasilitas kilang, laboratorium kalibrasi, dan jasa energi nasional.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-org">PT PGAS Solution</div>
+            <div class="card-role">Intern — Teknik Instrumentasi &amp; Kalibrasi</div>
+          </div>
+          <span class="card-badge">Jul – Des 2025 · 6 Bulan</span>
+        </div>
+        <p class="card-desc">
+          Anak perusahaan PT Perusahaan Gas Negara (PGN) Tbk yang bergerak di bidang layanan operasi &amp; pemeliharaan
+          infrastruktur gas bumi. Terlibat penuh dalam kegiatan kalibrasi instrumen berstandar
+          <strong style="color:var(--text)">ISO/IEC 17025</strong> di laboratorium dan titik distribusi jaringan gas PGN.
+        </p>
+        <ul class="card-list">
+          <li>Kalibrasi <strong style="color:var(--text)">pressure gauge</strong> menggunakan dead weight tester Additel 920 (akurasi ±0,1% FS): verifikasi linearitas, repeatability, hysteresis, dan penyusunan laporan kalibrasi tertelusur KAN/SNSU</li>
+          <li>Kalibrasi <strong style="color:var(--text)">temperature gauge &amp; instrumen suhu</strong> dengan oil bath WIKA Microbath CTB9100 (−30 s.d. +150 °C) dan CTB9500 (−45 s.d. +200 °C); dibandingkan terhadap reference thermometer bersertifikat nasional</li>
+          <li>Kalibrasi <strong style="color:var(--text)">Electronic Volume Corrector (EVC)</strong> untuk sistem custody transfer metering gas: verifikasi koreksi tekanan, suhu, dan faktor kompresibilitas gas sesuai standar AGA/ISO</li>
+          <li>Pengoperasian dan verifikasi <strong style="color:var(--text)">meter gas turbin &amp; diafragma</strong>: perhitungan K-factor, analisis linearitas aliran, dan validasi pembacaan DP transmitter</li>
+          <li>Penyusunan <strong style="color:var(--text)">sertifikat kalibrasi</strong> sesuai ketertelusuran metrologi nasional beserta estimasi ketidakpastian pengukuran (GUM method)</li>
+          <li>Troubleshooting sistem metering di titik distribusi PGN: identifikasi penyimpangan pembacaan, pengecekan kondisi sensor, dan koordinasi tindakan korektif</li>
+          <li>Penerapan prosedur K3 dan PTW (Permit to Work) di lingkungan operasional gas bumi</li>
+        </ul>
+        <div class="card-photos">
+          <img src="images/magang-pgas-1.jpg" alt="Kegiatan kalibrasi pressure gauge di PT PGAS Solution" class="card-photo" loading="lazy" data-title="Kalibrasi Pressure Gauge — PT PGAS Solution">
+          <img src="images/magang-pgas-2.jpg" alt="Kegiatan kalibrasi temperature di PT PGAS Solution" class="card-photo" loading="lazy" data-title="Kalibrasi Temperature — PT PGAS Solution">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-org">PT Kilang Pertamina Internasional — RU VI Balongan</div>
+            <div class="card-role">Intern — Pemeliharaan Instrumentasi Unit RCC</div>
+          </div>
+          <span class="card-badge">Des 2023 – Jan 2024</span>
+        </div>
+        <p class="card-desc">
+          Magang di unit <strong style="color:var(--text)">Residue Catalytic Cracking (RCC)</strong>, salah satu unit
+          proses kritis Kilang RU VI Balongan yang mengolah residu minyak bumi menjadi BBM, LPG, dan propilen.
+          Fokus pada pemeliharaan instrumentasi dan pemahaman sistem kontrol proses kilang skala besar.
+        </p>
+        <ul class="card-list">
+          <li>Observasi dan penanganan <strong style="color:var(--text)">field transmitter</strong> (pressure, temperature, flow, level) pada unit RCC; memahami prinsip kerja dan prosedur loop checking</li>
+          <li>Pengamatan <strong style="color:var(--text)">control valve dan aktuator</strong>: stroke test, pengecekan positioner, dan identifikasi fail-safe mode (fail-open/fail-close) sesuai SIS/PSD</li>
+          <li>Observasi instrumen analitik: gas chromatograph, O₂ analyzer, dan instrumen kualitas produk downstream</li>
+          <li>Analisis sistem kontrol <strong style="color:var(--text)">furnace unit RCC</strong>: pemantauan distribusi temperatur multi-titik, kontrol rasio udara-bahan bakar, dan integrasi sistem proteksi burner</li>
+          <li>Observasi operasi <strong style="color:var(--text)">DCS Yokogawa</strong> di ruang kontrol: monitoring trend, alarm management, dan interaksi operator dengan sistem kontrol</li>
+          <li>Pembacaan dan interpretasi <strong style="color:var(--text)">P&amp;ID, loop diagram, dan datasheet instrumen</strong> lapangan unit RCC</li>
+          <li>Pemahaman sistem keselamatan proses: interlock logic, Emergency Shutdown System (ESD), dan prosedur isolasi energi</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-org">SNTEEM — Publikasi Ilmiah</div>
+            <div class="card-role">Pemakalah / Penulis Paper</div>
+          </div>
+          <span class="card-badge">Seminar Nasional</span>
+        </div>
+        <p class="card-desc">
+          Mempresentasikan paper berjudul <strong style="color:var(--text)">"Kalibrasi Temperature Gauge Menggunakan
+          Oil Bath di Industri Kilang"</strong> pada Seminar Nasional Teknik Energi dan Mineral (SNTEEM) yang
+          diselenggarakan PEM Akamigas. Paper membahas prosedur kalibrasi temperatur menggunakan oil bath,
+          analisis ketidakpastian pengukuran (GUM), dan relevansinya dalam konteks pemeliharaan instrumentasi
+          kilang migas Indonesia.
+        </p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">03 — PENDIDIKAN</div>
+        <h2 class="sec-title">Latar Belakang Akademik</h2>
+        <p class="sec-sub">Pendidikan vokasi terapan yang berfokus pada sektor energi dan mineral nasional.</p>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-org">PEM Akamigas Cepu</div>
+            <div class="card-role">D-IV Teknik Instrumentasi Kilang</div>
+          </div>
+          <span class="card-badge">2022 – 2026</span>
+        </div>
+        <p class="card-desc">
+          Politeknik Energi dan Mineral Akamigas (PEM Akamigas) adalah perguruan tinggi vokasi di bawah naungan
+          <strong style="color:var(--text)">Kementerian Energi dan Sumber Daya Mineral (ESDM)</strong> yang berfokus
+          mencetak tenaga ahli sektor energi Indonesia. Program D-IV Teknik Instrumentasi Kilang menekankan penguasaan
+          mendalam pada sistem pengukuran, kontrol proses, dan keselamatan industri migas.
+        </p>
+        <ul class="card-list">
+          <li>Sistem pengukuran &amp; kontrol: prinsip kerja sensor, transmitter, dan final control element (FCV, PCV, LCV)</li>
+          <li>Kalibrasi instrumen lapangan: pressure, temperature, flow, dan level</li>
+          <li>Pemrograman PLC Siemens S7-1200/1500 (TIA Portal) &amp; DCS Yokogawa Centum VP</li>
+          <li>SCADA, HMI Nextion, dan sistem instrumentasi terintegrasi</li>
+          <li>Elektronika industri, pneumatik, dan hidrolik</li>
+          <li>Keselamatan kerja migas (K3LL), P&amp;ID, dan manajemen pemeliharaan terencana</li>
+          <li>Pemrograman Python, AutoCAD P&amp;ID, dan penulisan karya tulis ilmiah</li>
+        </ul>
+        <div class="meta-row">
+          <span>Jurusan: <b>Instrumentasi Kilang</b></span>
+          <span>Jenjang: <b>Diploma IV</b></span>
+          <span>Lokasi: <b>Cepu, Jawa Tengah</b></span>
+          <span>Naungan: <b>Kementerian ESDM</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="project" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">04 — TUGAS AKHIR</div>
+        <h2 class="sec-title">Proyek Unggulan</h2>
+        <p class="sec-sub">Sistem pengukuran sphericity pasir proppant berbasis computer vision.</p>
+      </div>
+      <div class="project">
+        <div class="project-tag">Capstone · Computer Vision · Raspberry Pi · API RP 19C</div>
+        <h3>Rancang Bangun Sistem Pengolahan Citra untuk Pengukuran Sphericity Pasir Proppant</h3>
+        <p>
+          Sistem pengukuran tingkat kebulatan (sphericity) butiran pasir proppant secara otomatis menggunakan
+          pengolahan citra digital. Proppant adalah material granular kritis dalam proses hydraulic fracturing
+          (fracking) sumur migas — kualitasnya sangat mempengaruhi permeabilitas retakan dan produktivitas sumur.
+          Sistem ini mengikuti standar <strong style="color:var(--text)">API RP 19C</strong> dengan formula
+          sphericity = (D<sub>min</sub>/D<sub>max</sub>) × 100% dan mengklasifikasikan butiran ke dalam 4 kategori
+          kualitas. Dibangun modular dengan Python &amp; OpenCV pada Raspberry Pi 5 dengan antarmuka layar sentuh DSI.
+        </p>
+        <div class="project-photos">
+          <img src="images/proppant-alat.jpg" alt="Perangkat sistem pengukuran: Raspberry Pi 5, kamera HQ IMX477, dan display Waveshare DSI" class="project-photo" loading="lazy" data-title="Perangkat Sistem Pengukuran Sphericity Proppant">
+          <img src="images/proppant-deteksi.jpg" alt="Hasil deteksi partikel proppant dengan garis D-max dan D-min pada citra biner" class="project-photo" loading="lazy" data-title="Hasil Deteksi Partikel — D-max dan D-min">
+        </div>
+        <div style="margin-bottom:20px">
+          <p style="font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">Klasifikasi Kualitas (API RP 19C)</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#86efac;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Excellent ≥ 90%</span>
+            <span style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);color:var(--accent-light);font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Good 80–89%</span>
+            <span style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#fcd34d;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Fair 70–79%</span>
+            <span style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Poor &lt; 70%</span>
+          </div>
+        </div>
+        <div class="spec-grid">
+          <div class="spec"><div class="spec-k">Prosesor</div><div class="spec-v">Raspberry Pi 5 (8 GB)</div></div>
+          <div class="spec"><div class="spec-k">Kamera</div><div class="spec-v">IMX477 HQ Camera</div></div>
+          <div class="spec"><div class="spec-k">Display</div><div class="spec-v">Waveshare 4.3" DSI</div></div>
+          <div class="spec"><div class="spec-k">Stack</div><div class="spec-v">Python · OpenCV</div></div>
+          <div class="spec"><div class="spec-k">Standar</div><div class="spec-v">API RP 19C</div></div>
+          <div class="spec"><div class="spec-k">Segmentasi</div><div class="spec-v">5 Metode Adaptif</div></div>
+          <div class="spec"><div class="spec-k">Modul</div><div class="spec-v">4 Modul Program</div></div>
+          <div class="spec"><div class="spec-k">Formula</div><div class="spec-v">(D<sub>min</sub>/D<sub>max</sub>)×100%</div></div>
+        </div>
+        <div class="result-bar">
+          <div class="result"><b>75,55%</b><span>PROPPANT 1 · N=53 BUTIRAN</span></div>
+          <div class="result"><b>78,43%</b><span>PROPPANT 2 · N=49 BUTIRAN</span></div>
+          <div class="result"><b>5</b><span>METODE SEGMENTASI</span></div>
+          <div class="result"><b>4</b><span>MODUL PROGRAM</span></div>
+          <div class="result"><b>API RP 19C</b><span>STANDAR ACUAN</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES GALLERY -->
+    <section id="certificates" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">05 — SERTIFIKAT</div>
+        <h2 class="sec-title">Galeri Sertifikat &amp; Dokumentasi</h2>
+        <p class="sec-sub">Klik thumbnail untuk melihat gambar penuh. Navigasi dengan tombol panah atau keyboard ← →.</p>
+      </div>
+      <!--
+        ================================================================
+        CARA MENAMBAH / MENGGANTI GAMBAR GALERI:
+        1. Letakkan file gambar di folder images/ di repositori GitHub
+        2. Edit array galleryItems di bagian <script> bawah halaman ini
+        3. Tambahkan item: { src: 'images/nama-file.jpg', title: 'Judul' }
+        4. Simpan dan push ke GitHub — galeri otomatis terupdate
+        ================================================================
+      -->
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="sec-head">
+        <div class="sec-num">06 — KOMPETENSI</div>
+        <h2 class="sec-title">Keahlian Teknis</h2>
+        <p class="sec-sub">Kemampuan yang dikembangkan melalui pendidikan vokasi, magang industri, dan proyek mandiri.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
+            <h4>Kalibrasi &amp; Metrologi</h4>
+          </div>
+          <div class="skill"><div class="skill-top"><span>Kalibrasi Pressure (Additel 920)</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Kalibrasi Temperatur (Oil Bath)</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-w="86"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>ISO/IEC 17025 &amp; Sertifikat Kalibrasi</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>EVC &amp; Custody Transfer Metering</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+            <h4>Kontrol &amp; Otomasi</h4>
+          </div>
+          <div class="skill"><div class="skill-top"><span>PLC Siemens S7-1200/1500 (TIA Portal)</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>DCS Yokogawa Centum VP</span><span>74%</span></div><div class="skill-track"><div class="skill-fill" data-w="74"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Pembacaan P&amp;ID &amp; Loop Diagram</span><span>83%</span></div><div class="skill-track"><div class="skill-fill" data-w="83"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>AutoCAD P&amp;ID</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <h4>Embedded &amp; Computer Vision</h4>
+          </div>
+          <div class="skill"><div class="skill-top"><span>Python &amp; OpenCV</span><span>84%</span></div><div class="skill-track"><div class="skill-fill" data-w="84"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Raspberry Pi &amp; ESP32</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-w="86"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>IoT (MQTT · Node-RED · PID)</span><span>76%</span></div><div class="skill-track"><div class="skill-fill" data-w="76"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Pengolahan Citra Digital</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h4>Keselamatan &amp; Dokumentasi</h4>
+          </div>
+          <div class="skill"><div class="skill-top"><span>K3 Industri Migas</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Well Control (IWCF Level 1)</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" data-w="78"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Laporan Teknis &amp; KTI</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Microsoft Office Suite</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Additel 920</span>
+        <span class="chip">WIKA Microbath CTB9100</span>
+        <span class="chip">WIKA CTB9500</span>
+        <span class="chip">Siemens TIA Portal</span>
+        <span class="chip">Yokogawa Centum VP</span>
+        <span class="chip">OpenCV</span>
+        <span class="chip">Node-RED</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">ESP32 / Arduino</span>
+        <span class="chip">MQTT</span>
+        <span class="chip">AutoCAD P&amp;ID</span>
+        <span class="chip">Git &amp; GitHub</span>
+        <span class="chip">Nextion HMI</span>
+        <span class="chip">Microsoft Office</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="contact-box">
+        <h3>Mari Terhubung</h3>
+        <p>Terbuka untuk peluang sebagai Instrumentation &amp; Electrical Engineer di sektor migas dan energi. Siap relokasi ke seluruh wilayah Indonesia.</p>
+        <div class="contact-links">
+          <a class="clink" href="mailto:diandridillon@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            diandridillon@gmail.com
+          </a>
+          <a class="clink" href="https://www.linkedin.com/in/dillondiandri" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn · dillondiandri
+          </a>
+          <span class="clink" style="cursor:default">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cepu, Jawa Tengah
+          </span>
+        </div>
+        <p class="clink-note">Waktu respons: dalam 24 jam · Tersedia untuk diskusi via email atau LinkedIn</p>
+      </div>
+    </section>
+
+  </div>
+  <footer>© 2026 Dillon Diandri · Instrumentation &amp; Electrical Engineer · PEM Akamigas Cepu</footer>
+</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Tampilan gambar besar">
+  <button class="lb-close" id="lbClose" aria-label="Tutup">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lb-prev" id="lbPrev" aria-label="Sebelumnya">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="lb-inner">
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+  <button class="lb-next" id="lbNext" aria-label="Berikutnya">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
 </div>
 
 <script>
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('show');
-        e.target.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});
-      }
-    });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// ================================================================
+// GALERI SERTIFIKAT & DOKUMENTASI
+// ----------------------------------------------------------------
+// CARA MENAMBAH / MENGGANTI GAMBAR:
+//   1. Letakkan file gambar di folder images/ di repositori GitHub
+//   2. Tambahkan item baru ke array galleryItems di bawah:
+//      { src: 'images/nama-file.jpg', title: 'Judul Gambar' }
+//   3. Push ke GitHub — galeri otomatis diperbarui
+// ================================================================
+const galleryItems = [
+  { src: 'images/sertifikat-instrumentasi.jpg', title: 'BNSP — Teknisi Instrumentasi Tingkat I (PPSDM Migas, 2026–2030)' },
+  { src: 'images/sertifikat-k3.jpg',            title: 'BNSP — Operator K3 Migas (PPSDM Migas, 2026–2030)' },
+  { src: 'images/sertifikat-iwcf.jpg',           title: 'IWCF Well Control — Level 1 Programme (2026)' },
+  { src: 'images/sertifikat-msoffice.jpg',       title: 'Applied Microsoft Office — Trust Training Partners / Microsoft (2026)' },
+  { src: 'images/toeic.jpg',                     title: 'TOEIC — Skor 630' },
+  { src: 'images/magang-pgas-1.jpg',             title: 'Dokumentasi Magang — PT PGAS Solution (Kalibrasi Pressure Gauge)' },
+  { src: 'images/magang-pgas-2.jpg',             title: 'Dokumentasi Magang — PT PGAS Solution (Kalibrasi Temperature)' },
+];
 
-  // Active nav + breadcrumb on scroll
-  const secs=[...document.querySelectorAll('section[id]')];
-  const navs=[...document.querySelectorAll('.nav-item[data-sec]')];
-  const crumb=document.getElementById('crumb');
-  const spy=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const id=e.target.id;
-        navs.forEach(n=>n.classList.toggle('active',n.dataset.sec===id));
-        if(crumb) crumb.textContent=id;
-      }
-    });
-  },{rootMargin:'-45% 0px -50% 0px'});
-  secs.forEach(s=>spy.observe(s));
+// Render gallery grid
+const grid = document.getElementById('galleryGrid');
+galleryItems.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  div.innerHTML = `
+    <img src="${item.src}" alt="${item.title}" loading="lazy">
+    <div class="gallery-caption">${item.title}</div>
+    <div class="gallery-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+      </svg>
+    </div>`;
+  div.addEventListener('click', () => openLightbox(i));
+  grid.appendChild(div);
+});
 
-  // Mobile sidebar
-  const sb=document.getElementById('sidebar');
-  const bd=document.getElementById('backdrop');
-  const mb=document.getElementById('menuBtn');
-  function closeSb(){sb.classList.remove('open');bd.classList.remove('show')}
-  mb.addEventListener('click',()=>{sb.classList.add('open');bd.classList.add('show')});
-  bd.addEventListener('click',closeSb);
-  document.querySelectorAll('.nav-item').forEach(a=>a.addEventListener('click',closeSb));
+// Foto di luar galeri (card-photo & project-photo) juga bisa dibuka lightbox
+document.querySelectorAll('.card-photo, .project-photo').forEach(img => {
+  img.addEventListener('click', () => {
+    const title = img.dataset.title || img.alt;
+    const src = img.getAttribute('src');
+    const idx = galleryItems.findIndex(g => g.src === src);
+    if (idx !== -1) { openLightbox(idx); return; }
+    // Gambar tidak ada di galeri — tampilkan saja
+    lbImg.src = src; lbImg.alt = title;
+    lbCaption.textContent = title; lbCounter.textContent = '';
+    document.getElementById('lbPrev').style.visibility = 'hidden';
+    document.getElementById('lbNext').style.visibility = 'hidden';
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  });
+});
+
+// Lightbox logic
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbCounter = document.getElementById('lbCounter');
+let lbCurrent = 0;
+
+function openLightbox(index) {
+  lbCurrent = index; showLb();
+  lb.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function showLb() {
+  const item = galleryItems[lbCurrent];
+  lbImg.src = item.src; lbImg.alt = item.title;
+  lbCaption.textContent = item.title;
+  lbCounter.textContent = (lbCurrent + 1) + ' / ' + galleryItems.length;
+  document.getElementById('lbPrev').style.visibility = lbCurrent > 0 ? 'visible' : 'hidden';
+  document.getElementById('lbNext').style.visibility = lbCurrent < galleryItems.length - 1 ? 'visible' : 'hidden';
+}
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', () => { if (lbCurrent > 0) { lbCurrent--; showLb(); } });
+document.getElementById('lbNext').addEventListener('click', () => { if (lbCurrent < galleryItems.length - 1) { lbCurrent++; showLb(); } });
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft' && lbCurrent > 0) { lbCurrent--; showLb(); }
+  if (e.key === 'ArrowRight' && lbCurrent < galleryItems.length - 1) { lbCurrent++; showLb(); }
+});
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      e.target.querySelectorAll('.skill-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
+    }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Active nav + breadcrumb
+const secs = [...document.querySelectorAll('section[id]')];
+const navs = [...document.querySelectorAll('.nav-item[data-sec]')];
+const crumb = document.getElementById('crumb');
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navs.forEach(n => n.classList.toggle('active', n.dataset.sec === e.target.id));
+      if (crumb) crumb.textContent = e.target.id;
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+secs.forEach(s => spy.observe(s));
+
+// Mobile sidebar
+const sb = document.getElementById('sidebar');
+const bd = document.getElementById('backdrop');
+document.getElementById('menuBtn').addEventListener('click', () => { sb.classList.add('open'); bd.classList.add('show'); });
+function closeSb() { sb.classList.remove('open'); bd.classList.remove('show'); }
+bd.addEventListener('click', closeSb);
+document.querySelectorAll('.nav-item').forEach(a => a.addEventListener('click', closeSb));
 </script>
 </body>
 </html>
