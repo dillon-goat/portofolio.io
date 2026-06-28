@@ -69,6 +69,15 @@
   .brand-name{font-size:1.18rem;font-weight:800;letter-spacing:-.01em}
   .brand-role{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:4px;letter-spacing:.02em}
 
+  /* ===== FOTO PROFIL (SIDEBAR AVATAR) ===== */
+  .brand-avatar{
+    width:64px;height:64px;border-radius:50%;
+    object-fit:cover;object-position:center top;
+    border:2px solid var(--accent);
+    margin-bottom:14px;display:block;
+    box-shadow:0 0 0 4px rgba(52,224,196,.08);
+  }
+
   .nav-section{padding:0 14px;flex:1}
   .nav-label{
     font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
@@ -116,6 +125,19 @@
   section{scroll-margin-top:80px;margin-bottom:64px}
 
   /* ===== HERO ===== */
+  .hero-grid{display:flex;gap:48px;align-items:flex-start}
+  .hero-col-text{flex:1;min-width:0}
+  .hero-col-photo{flex-shrink:0;width:220px}
+  .hero-photo{
+    width:220px;height:220px;border-radius:18px;object-fit:cover;
+    border:1px solid var(--line);
+    box-shadow:0 20px 50px -20px rgba(52,224,196,.25);
+  }
+  @media(max-width:880px){
+    .hero-grid{flex-direction:column-reverse}
+    .hero-col-photo{width:140px}
+    .hero-photo{width:140px;height:140px}
+  }
   .hero-eyebrow{
     font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
     color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
@@ -175,6 +197,22 @@
     padding:4px 11px;border-radius:6px;white-space:nowrap;
   }
   .card-desc{color:#9fabc2;font-size:.92rem;margin-top:14px}
+
+  /* ===== FOTO DOKUMENTASI (di dalam card pengalaman / project) ===== */
+  .card-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .card-photo{
+    width:160px;height:110px;object-fit:cover;border-radius:10px;
+    border:1px solid var(--line);transition:.2s;
+  }
+  .card-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .project-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 22px}
+  .project-photo{
+    width:100%;height:150px;object-fit:cover;border-radius:12px;
+    border:1px solid rgba(52,224,196,.2);
+  }
+  @media(max-width:480px){
+    .card-photo{width:130px;height:90px}
+  }
   .card-list{list-style:none;margin-top:16px;display:grid;gap:9px}
   .card-list li{position:relative;padding-left:22px;color:#9fabc2;font-size:.9rem}
   .card-list li::before{
@@ -277,6 +315,7 @@
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
+      <img src="images/profil.jpg" alt="Foto profil Dillon Diandri" class="brand-avatar">
       <div class="brand-status"><span class="dot"></span>Open to work</div>
       <div class="brand-name">Dillon Diandri</div>
       <div class="brand-role">I&amp;E Engineer · Oil &amp; Gas</div>
@@ -341,26 +380,33 @@
 
       <!-- OVERVIEW -->
       <section id="overview" class="hero reveal">
-        <div class="hero-eyebrow">Instrumentation &amp; Electrical Engineer</div>
-        <h1>Presisi pengukuran untuk <span class="hl">keandalan</span> operasi kilang.</h1>
-        <p class="hero-lead">
-          Lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas dengan pengalaman kalibrasi
-          instrumen berstandar ISO/IEC 17025, pemrograman PLC &amp; DCS, serta pengembangan sistem
-          computer vision berbasis Raspberry Pi. Terbuka untuk peran I&amp;E Engineer di sektor migas, siap relokasi nasional.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">Kalibrasi Instrumen</span>
-          <span class="tag">PLC Siemens S7</span>
-          <span class="tag">DCS Yokogawa Centum VP</span>
-          <span class="tag">Python / OpenCV</span>
-          <span class="tag">K3 Migas</span>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#contact">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Hubungi Saya
-          </a>
-          <a class="btn btn-ghost" href="#experience">Lihat Pengalaman</a>
+        <div class="hero-grid">
+          <div class="hero-col-text">
+            <div class="hero-eyebrow">Instrumentation &amp; Electrical Engineer</div>
+            <h1>Presisi pengukuran untuk <span class="hl">keandalan</span> operasi kilang.</h1>
+            <p class="hero-lead">
+              Lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas dengan pengalaman kalibrasi
+              instrumen berstandar ISO/IEC 17025, pemrograman PLC &amp; DCS, serta pengembangan sistem
+              computer vision berbasis Raspberry Pi. Terbuka untuk peran I&amp;E Engineer di sektor migas, siap relokasi nasional.
+            </p>
+            <div class="hero-tags">
+              <span class="tag">Kalibrasi Instrumen</span>
+              <span class="tag">PLC Siemens S7</span>
+              <span class="tag">DCS Yokogawa Centum VP</span>
+              <span class="tag">Python / OpenCV</span>
+              <span class="tag">K3 Migas</span>
+            </div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Hubungi Saya
+              </a>
+              <a class="btn btn-ghost" href="#experience">Lihat Pengalaman</a>
+            </div>
+          </div>
+          <div class="hero-col-photo">
+            <img src="images/profil.jpg" alt="Foto Dillon Diandri" class="hero-photo">
+          </div>
         </div>
 
         <div class="metrics">
@@ -426,6 +472,10 @@
             <li>Penyusunan laporan dan sertifikat kalibrasi sesuai ketertelusuran metrologi</li>
             <li>Penerapan prosedur K3 di lingkungan industri gas bumi</li>
           </ul>
+          <div class="card-photos">
+            <img src="images/magang-pgas-1.jpg" alt="Dokumentasi kalibrasi di PT PGAS Solution" class="card-photo">
+            <img src="images/magang-pgas-2.jpg" alt="Dokumentasi kegiatan magang PT PGAS Solution" class="card-photo">
+          </div>
         </div>
 
         <div class="card">
@@ -445,6 +495,10 @@
             <li>Membaca dan menginterpretasi P&amp;ID serta loop instrumentasi</li>
             <li>Memahami integrasi DCS pada operasi unit proses</li>
           </ul>
+          <div class="card-photos">
+            <img src="images/magang-kpi-1.jpg" alt="Dokumentasi magang di PT Kilang Pertamina Internasional" class="card-photo">
+            <img src="images/magang-kpi-2.jpg" alt="Dokumentasi unit RCC Balongan" class="card-photo">
+          </div>
         </div>
 
         <div class="card">
@@ -507,6 +561,10 @@
             dikategorikan Excellent (≥90), Good (80–89), Fair (70–79), dan Poor (&lt;70). Dibangun modular dengan
             Python &amp; OpenCV pada Raspberry Pi 5.
           </p>
+          <div class="project-photos">
+            <img src="images/proppant-alat.jpg" alt="Perangkat Raspberry Pi 5 dan kamera HQ untuk sistem sphericity" class="project-photo">
+            <img src="images/proppant-deteksi.jpg" alt="Hasil deteksi partikel proppant dengan garis D-max dan D-min" class="project-photo">
+          </div>
           <div class="spec-grid">
             <div class="spec"><div class="spec-k">Prosesor</div><div class="spec-v">Raspberry Pi 5</div></div>
             <div class="spec"><div class="spec-k">Kamera</div><div class="spec-v">IMX477 HQ Camera</div></div>
