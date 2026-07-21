@@ -5,76 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dillon Diandri — Instrumentation & Electrical Engineer</title>
 <meta name="description" content="Portofolio Dillon Diandri, I&E Engineer lulusan D-IV Teknik Instrumentasi Kilang PEM Akamigas. Spesialis kalibrasi ISO/IEC 17025, PLC, DCS, computer vision." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080b12;
-  --panel:#0f1420;
-  --panel2:#151c2c;
-  --line:#1e2740;
-  --accent:#3b82f6;
-  --accent-dim:#1e40af;
-  --accent-light:#93c5fd;
-  --amber:#f59e0b;
-  --text:#e6edf7;
-  --muted:#7d8aa3;
-  --mono:'JetBrains Mono','SF Mono',ui-monospace,Consolas,monospace;
-  --sans:'Segoe UI',system-ui,-apple-system,sans-serif;
-  --sidebar-w:256px;
+  --bg:#0a0e13;
+  --panel:#101620;
+  --panel2:#161e2b;
+  --line:#1e2836;
+  --line-soft:#18202c;
+  --accent:#35d0b5;          /* teal — indikator "normal" */
+  --accent-soft:rgba(53,208,181,.1);
+  --accent-line:rgba(53,208,181,.25);
+  --amber:#f0a441;           /* amber — indikator "attention" */
+  --amber-soft:rgba(240,164,65,.1);
+  --text:#e9eef4;
+  --body:#a9b4c2;
+  --muted:#75818f;
+  --faint:#4d5866;
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --sidebar-w:260px;
+  --radius:14px;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(700px circle at 80% -5%,rgba(59,130,246,.07),transparent 60%),
-    radial-gradient(600px circle at 0% 100%,rgba(245,158,11,.04),transparent 55%);
+    radial-gradient(800px circle at 85% -10%,rgba(53,208,181,.06),transparent 60%),
+    radial-gradient(700px circle at -5% 105%,rgba(240,164,65,.04),transparent 55%);
 }
 .shell{display:flex;min-height:100vh;position:relative;z-index:1}
 
-/* SIDEBAR */
+/* ============ SIDEBAR ============ */
 .sidebar{
   width:var(--sidebar-w);flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);
-  position:fixed;top:0;bottom:0;left:0;padding:28px 0;display:flex;flex-direction:column;
-  z-index:50;overflow-y:auto;transition:.25s;
+  position:fixed;inset:0 auto 0 0;padding:30px 0 22px;display:flex;flex-direction:column;
+  z-index:50;overflow-y:auto;transition:transform .25s ease;
 }
-.brand{padding:0 24px 24px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.brand{padding:0 26px 22px;border-bottom:1px solid var(--line-soft);margin-bottom:14px}
 .brand-avatar{
-  width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:center top;
+  width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center top;
   border:2px solid var(--accent);margin-bottom:14px;display:block;
-  box-shadow:0 0 0 4px rgba(59,130,246,.1);
+  box-shadow:0 0 0 5px var(--accent-soft);
 }
 .brand-status{
-  display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.65rem;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.63rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;
 }
-.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
-  box-shadow:0 0 0 0 rgba(59,130,246,.5);animation:pulse 2.2s infinite}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
 @keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}
-  70%{box-shadow:0 0 0 7px rgba(59,130,246,0)}
-  100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}
+  0%{box-shadow:0 0 0 0 rgba(53,208,181,.45)}
+  70%{box-shadow:0 0 0 8px rgba(53,208,181,0)}
+  100%{box-shadow:0 0 0 0 rgba(53,208,181,0)}
 }
-.brand-name{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
-.brand-role{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:4px;letter-spacing:.02em}
-.nav-section{padding:0 12px;flex:1}
+.brand-name{font-family:var(--display);font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
+.brand-role{font-family:var(--mono);font-size:.67rem;color:var(--muted);margin-top:5px}
+.nav-section{padding:0 14px;flex:1}
 .nav-label{
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
-  color:#56627c;padding:0 12px;margin:16px 0 7px;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);padding:0 12px;margin:18px 0 6px;
 }
 .nav-item{
-  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:8px;
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:9px;
   color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;
-  transition:.15s;cursor:pointer;position:relative;
+  transition:.15s;position:relative;
 }
 .nav-item svg{width:17px;height:17px;flex-shrink:0;stroke-width:1.8}
 .nav-item:hover{background:var(--panel2);color:var(--text)}
-.nav-item.active{background:rgba(59,130,246,.1);color:var(--accent)}
+.nav-item.active{background:var(--accent-soft);color:var(--accent)}
 .nav-item.active::before{
-  content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+  content:'';position:absolute;left:-14px;top:50%;transform:translateY(-50%);
   width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0;
 }
-.sidebar-foot{padding:16px 24px 0;border-top:1px solid var(--line);margin-top:12px}
+.sidebar-foot{padding:14px 26px 0;border-top:1px solid var(--line-soft);margin-top:12px}
 .sidebar-foot a{
   display:flex;align-items:center;gap:10px;color:var(--muted);
   text-decoration:none;font-size:.82rem;padding:7px 0;transition:.15s;
@@ -82,125 +90,138 @@ body::before{
 .sidebar-foot a:hover{color:var(--accent)}
 .sidebar-foot svg{width:16px;height:16px;stroke-width:1.8}
 
-/* MAIN */
+/* ============ MAIN ============ */
 .main{margin-left:var(--sidebar-w);flex:1;min-width:0}
 .topbar{
-  position:sticky;top:0;z-index:40;background:rgba(8,11,18,.85);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);padding:16px 40px;
+  position:sticky;top:0;z-index:40;background:rgba(10,14,19,.82);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);padding:15px 44px;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
 }
-.topbar-title{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.04em}
-.topbar-title b{color:var(--text);font-weight:600}
-.topbar-meta{font-family:var(--mono);font-size:.72rem;color:#56627c}
+.topbar-title{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.topbar-title b{color:var(--text);font-weight:500}
+.topbar-meta{font-family:var(--mono);font-size:.7rem;color:var(--faint)}
 .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);
-  border-radius:8px;padding:7px 9px;cursor:pointer}
+  border-radius:9px;padding:7px 9px;cursor:pointer}
 .menu-btn svg{width:20px;height:20px;display:block}
-.content{padding:44px;max-width:1100px}
-section{scroll-margin-top:80px;margin-bottom:70px}
+.content{padding:52px 48px;max-width:1080px}
+section{scroll-margin-top:84px;margin-bottom:88px}
 
-/* HERO */
-.hero-grid{display:flex;gap:48px;align-items:flex-start}
+/* ============ SECTION HEADERS (dengan "tick ruler") ============ */
+.sec-head{margin-bottom:30px}
+.sec-num{font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+.sec-title{font-family:var(--display);font-size:1.7rem;font-weight:700;letter-spacing:-.01em;margin-top:6px}
+.sec-sub{color:var(--muted);font-size:.9rem;margin-top:8px;max-width:600px}
+.ruler{
+  margin-top:16px;height:10px;position:relative;max-width:220px;
+  background:
+    repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 11px);
+  border-bottom:1px solid var(--line);
+}
+.ruler::before{content:'';position:absolute;left:0;bottom:0;width:44px;height:10px;
+  background:repeating-linear-gradient(90deg,var(--accent) 0 1px,transparent 1px 11px);
+  border-bottom:1px solid var(--accent)}
+
+/* ============ HERO ============ */
+.hero-grid{display:flex;gap:52px;align-items:flex-start}
 .hero-col-text{flex:1;min-width:0}
-.hero-col-photo{flex-shrink:0;width:220px}
+.hero-col-photo{flex-shrink:0;width:216px}
 .hero-photo{
-  width:220px;height:220px;border-radius:18px;object-fit:cover;
-  border:1px solid var(--line);box-shadow:0 20px 50px -20px rgba(59,130,246,.3);
+  width:216px;height:216px;border-radius:20px;object-fit:cover;
+  border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(53,208,181,.28);
 }
 .hero-eyebrow{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:18px;
 }
-.hero-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);max-width:200px}
-.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.09;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1{
+  font-family:var(--display);font-size:clamp(2rem,4.6vw,2.9rem);font-weight:700;
+  line-height:1.12;letter-spacing:-.02em;margin-bottom:20px;
+}
 .hero h1 .hl{color:var(--accent)}
-.hero-lead{font-size:1.01rem;color:#aab6cc;max-width:640px;margin-bottom:28px;line-height:1.72}
-.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:32px}
+.hero-lead{font-size:1rem;color:var(--body);max-width:620px;margin-bottom:28px;line-height:1.75}
+.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:34px}
 .tag{
-  font-family:var(--mono);font-size:.73rem;color:var(--accent);
-  background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);
-  padding:5px 12px;border-radius:6px;
+  font-family:var(--mono);font-size:.72rem;color:var(--accent);
+  background:var(--accent-soft);border:1px solid var(--accent-line);
+  padding:5px 12px;border-radius:7px;
 }
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{
-  display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border-radius:9px;
-  font-weight:600;font-size:.91rem;text-decoration:none;cursor:pointer;border:none;transition:.18s;
+  display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border-radius:10px;
+  font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;border:none;transition:.18s;
 }
 .btn svg{width:16px;height:16px;stroke-width:2}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(59,130,246,.5)}
+.btn-primary{background:var(--accent);color:#06110e}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(53,208,181,.5)}
 .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
 /* METRICS */
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
 .metric{
-  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;
-  position:relative;overflow:hidden;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;
 }
-.metric::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-  background:linear-gradient(90deg,var(--accent),transparent)}
-.metric-val{font-size:1.85rem;font-weight:800;color:var(--accent);font-family:var(--mono);letter-spacing:-.02em}
+.metric-val{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--accent);letter-spacing:-.02em}
 .metric-label{font-size:.77rem;color:var(--muted);margin-top:4px}
 
-/* SECTION HEADERS */
-.sec-head{margin-bottom:28px}
-.sec-num{font-family:var(--mono);font-size:.7rem;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase}
-.sec-title{font-size:1.55rem;font-weight:800;letter-spacing:-.01em;margin-top:4px}
-.sec-sub{color:var(--muted);font-size:.91rem;margin-top:6px;max-width:600px}
-
-/* CARDS */
+/* ============ CARDS ============ */
 .card{
-  background:var(--panel);border:1px solid var(--line);border-radius:14px;
-  padding:26px 28px;transition:.2s;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 30px;transition:.2s;
 }
 .card+.card{margin-top:18px}
-.card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px)}
+.card:hover{border-color:var(--accent-line)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-.card-org{font-size:1.1rem;font-weight:700}
-.card-role{color:var(--accent);font-size:.9rem;font-family:var(--mono);margin-top:3px}
+.card-org{font-family:var(--display);font-size:1.1rem;font-weight:700}
+.card-role{color:var(--accent);font-size:.85rem;font-family:var(--mono);margin-top:4px}
 .card-badge{
-  font-family:var(--mono);font-size:.7rem;color:var(--amber);
-  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
-  padding:4px 11px;border-radius:6px;white-space:nowrap;flex-shrink:0;
+  font-family:var(--mono);font-size:.69rem;color:var(--amber);
+  background:var(--amber-soft);border:1px solid rgba(240,164,65,.25);
+  padding:4px 11px;border-radius:7px;white-space:nowrap;flex-shrink:0;
 }
-.card-desc{color:#9fabc2;font-size:.91rem;margin-top:14px;line-height:1.72}
-.card-list{list-style:none;margin-top:14px;display:grid;gap:9px}
-.card-list li{position:relative;padding-left:22px;color:#9fabc2;font-size:.89rem;line-height:1.65}
-.card-list li::before{content:'▸';position:absolute;left:0;top:1px;color:var(--accent);font-size:.78rem}
-.card-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.card-desc{color:var(--body);font-size:.91rem;margin-top:14px;line-height:1.75}
+.card-list{list-style:none;margin-top:14px;display:grid;gap:10px}
+.card-list li{position:relative;padding-left:22px;color:var(--body);font-size:.89rem;line-height:1.68}
+.card-list li::before{content:'';position:absolute;left:2px;top:.62em;width:8px;height:8px;
+  border:1.5px solid var(--accent);border-radius:2px;transform:rotate(45deg)}
+.card-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .card-photo{
   width:160px;height:110px;object-fit:cover;border-radius:10px;
   border:1px solid var(--line);transition:.2s;cursor:pointer;
 }
 .card-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
-.meta-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-family:var(--mono);font-size:.79rem}
+.meta-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;font-family:var(--mono);font-size:.78rem}
 .meta-row span{color:var(--muted)}
-.meta-row b{color:var(--text);font-weight:600}
+.meta-row b{color:var(--text);font-weight:500}
+strong{color:var(--text);font-weight:600}
 
-/* PROJECT */
+/* ============ PROJECT ============ */
 .project{
   background:linear-gradient(160deg,var(--panel2),var(--panel));
-  border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:32px;
+  border:1px solid var(--accent-line);border-radius:16px;padding:34px;
 }
-.project-tag{font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase}
-.project h3{font-size:1.28rem;font-weight:800;margin:8px 0 12px}
-.project>p{color:#9fabc2;font-size:.92rem;margin-bottom:20px;line-height:1.72}
-.project-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:20px 0}
+.project-tag{font-family:var(--mono);font-size:.68rem;color:var(--amber);letter-spacing:.12em;text-transform:uppercase}
+.project h3{font-family:var(--display);font-size:1.3rem;font-weight:700;margin:10px 0 14px;line-height:1.3}
+.project>p{color:var(--body);font-size:.92rem;margin-bottom:22px;line-height:1.75}
+.project-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
 .project-photo{
   width:100%;height:160px;object-fit:cover;border-radius:12px;
-  border:1px solid rgba(59,130,246,.2);cursor:pointer;transition:.2s;
+  border:1px solid var(--accent-line);cursor:pointer;transition:.2s;
 }
 .project-photo:hover{border-color:var(--accent);transform:translateY(-2px)}
-.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
-.spec{background:rgba(8,11,18,.5);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.spec-k{font-family:var(--mono);font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.spec-v{font-weight:700;margin-top:4px;font-size:.93rem}
-.result-bar{display:flex;gap:20px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line)}
-.result{font-family:var(--mono);font-size:.82rem}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
+.spec{background:rgba(10,14,19,.55);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.spec-k{font-family:var(--mono);font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.spec-v{font-weight:600;margin-top:4px;font-size:.92rem}
+.class-chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.class-chip{font-family:var(--mono);font-size:.74rem;padding:5px 13px;border-radius:7px}
+.result-bar{display:flex;gap:24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line)}
+.result{font-family:var(--mono);font-size:.8rem}
 .result b{color:var(--accent);font-size:1.05rem;display:block}
-.result span{color:var(--muted);font-size:.71rem}
+.result span{color:var(--muted);font-size:.68rem}
 
-/* GALLERY */
+/* ============ GALLERY ============ */
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
 .gallery-item{
   position:relative;border-radius:12px;overflow:hidden;
@@ -208,118 +229,125 @@ section{scroll-margin-top:80px;margin-bottom:70px}
   transition:.22s;aspect-ratio:4/3;
 }
 .gallery-item:hover{border-color:var(--accent);transform:translateY(-3px);
-  box-shadow:0 12px 32px -12px rgba(59,130,246,.3)}
+  box-shadow:0 14px 34px -14px rgba(53,208,181,.28)}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
 .gallery-item:hover img{transform:scale(1.04)}
 .gallery-caption{
   position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(8,11,18,.92));
-  padding:28px 12px 12px;font-size:.74rem;color:var(--text);
-  font-family:var(--mono);line-height:1.4;
+  background:linear-gradient(transparent,rgba(10,14,19,.94));
+  padding:28px 12px 12px;font-size:.72rem;color:var(--text);
+  font-family:var(--mono);line-height:1.45;
 }
 .gallery-overlay{
-  position:absolute;inset:0;background:rgba(59,130,246,.08);
+  position:absolute;inset:0;background:rgba(53,208,181,.07);
   display:flex;align-items:center;justify-content:center;opacity:0;transition:.22s;
 }
 .gallery-item:hover .gallery-overlay{opacity:1}
-.gallery-overlay svg{width:32px;height:32px;color:var(--accent)}
+.gallery-overlay svg{width:30px;height:30px;color:var(--accent)}
 
-/* LIGHTBOX */
+/* ============ LIGHTBOX ============ */
 .lb{
   display:none;position:fixed;inset:0;z-index:1000;
-  background:rgba(5,8,15,.95);backdrop-filter:blur(12px);
+  background:rgba(6,9,14,.95);backdrop-filter:blur(12px);
   align-items:center;justify-content:center;
 }
 .lb.open{display:flex}
-.lb-inner{
-  position:relative;max-width:92vw;max-height:90vh;
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-}
+.lb-inner{position:relative;max-width:92vw;max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:14px}
 .lb-img{max-width:88vw;max-height:76vh;border-radius:12px;border:1px solid var(--line);
   object-fit:contain;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
-.lb-caption{font-family:var(--mono);font-size:.83rem;color:var(--accent-light);text-align:center;max-width:600px;padding:0 60px}
-.lb-counter{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
-.lb-close{
-  position:fixed;top:20px;right:24px;background:var(--panel2);border:1px solid var(--line);
-  color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;
+.lb-caption{font-family:var(--mono);font-size:.82rem;color:var(--accent);text-align:center;max-width:600px;padding:0 60px}
+.lb-counter{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lb-close,.lb-prev,.lb-next{
+  position:fixed;background:var(--panel2);border:1px solid var(--line);
+  color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer;
   display:flex;align-items:center;justify-content:center;transition:.15s;
 }
-.lb-close:hover{border-color:var(--accent);color:var(--accent)}
-.lb-prev,.lb-next{
-  position:fixed;top:50%;transform:translateY(-50%);
-  background:var(--panel2);border:1px solid var(--line);color:var(--text);
-  width:44px;height:44px;border-radius:50%;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:.15s;
-}
-.lb-prev{left:20px}.lb-next{right:20px}
-.lb-prev:hover,.lb-next:hover{border-color:var(--accent);color:var(--accent)}
+.lb-close{top:20px;right:24px}
+.lb-prev{left:20px;top:50%;transform:translateY(-50%)}
+.lb-next{right:20px;top:50%;transform:translateY(-50%)}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{border-color:var(--accent);color:var(--accent)}
 .lb-prev svg,.lb-next svg,.lb-close svg{width:20px;height:20px;stroke-width:2;display:block}
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
-.skill-card-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
-.skill-card-head svg{width:20px;height:20px;color:var(--accent);stroke-width:1.8;flex-shrink:0}
-.skill-card-head h4{font-size:.98rem;font-weight:700}
-.skill{margin-bottom:14px}
-.skill:last-child{margin-bottom:0}
-.skill-top{display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:6px}
-.skill-top span:last-child{font-family:var(--mono);color:var(--accent);font-size:.77rem}
-.skill-track{height:5px;background:var(--panel2);border-radius:4px;overflow:hidden}
-.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent-dim),var(--accent));
-  border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.chip{font-family:var(--mono);font-size:.75rem;color:#9fabc2;background:var(--panel2);
-  border:1px solid var(--line);padding:5px 11px;border-radius:6px}
-
-/* CONTACT */
-.contact-box{
-  background:linear-gradient(150deg,rgba(59,130,246,.07),var(--panel));
-  border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:42px;text-align:center;
+/* ============ SKILLS — INSTRUMENT TAG LIST (tanpa persentase) ============ */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 20px}
+.skill-card-head{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+.skill-card-head svg{width:19px;height:19px;color:var(--accent);stroke-width:1.8;flex-shrink:0}
+.skill-card-head h4{font-family:var(--display);font-size:1rem;font-weight:700}
+.skill-card-sub{font-size:.79rem;color:var(--muted);margin-bottom:16px;padding-left:30px}
+.tag-list{list-style:none;display:grid}
+.tag-item{
+  display:grid;grid-template-columns:74px 1fr;gap:14px;align-items:start;
+  padding:13px 0;border-top:1px solid var(--line-soft);
 }
-.contact-box h3{font-size:1.45rem;font-weight:800;margin-bottom:10px}
-.contact-box>p{color:var(--muted);max-width:460px;margin:0 auto 26px;font-size:.93rem}
+.tag-item:first-child{border-top:none}
+.tag-code{
+  font-family:var(--mono);font-size:.68rem;color:var(--accent);
+  border:1px solid var(--accent-line);background:var(--accent-soft);
+  border-radius:6px;padding:4px 0;text-align:center;margin-top:2px;letter-spacing:.04em;
+}
+.tag-name{font-size:.9rem;font-weight:600;color:var(--text);line-height:1.4}
+.tag-desc{font-size:.81rem;color:var(--muted);margin-top:3px;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-family:var(--mono);font-size:.74rem;color:var(--body);background:var(--panel2);
+  border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+
+/* ============ CONTACT ============ */
+.contact-box{
+  background:linear-gradient(150deg,var(--accent-soft),var(--panel));
+  border:1px solid var(--accent-line);border-radius:16px;padding:46px 42px;text-align:center;
+}
+.contact-box h3{font-family:var(--display);font-size:1.5rem;font-weight:700;margin-bottom:10px}
+.contact-box>p{color:var(--muted);max-width:460px;margin:0 auto 28px;font-size:.92rem}
 .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
 .clink{
   display:inline-flex;align-items:center;gap:9px;padding:11px 20px;
-  background:var(--panel);border:1px solid var(--line);border-radius:9px;
-  color:var(--text);text-decoration:none;font-size:.87rem;transition:.18s;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  color:var(--text);text-decoration:none;font-size:.86rem;transition:.18s;
 }
 .clink svg{width:17px;height:17px;color:var(--accent);stroke-width:1.8;flex-shrink:0}
 .clink:hover{border-color:var(--accent);transform:translateY(-2px)}
-.clink-note{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:18px}
+.clink-note{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:20px}
 
 footer{
-  text-align:center;color:#56627c;font-size:.78rem;font-family:var(--mono);
+  text-align:center;color:var(--faint);font-size:.76rem;font-family:var(--mono);
   padding:28px 40px;border-top:1px solid var(--line);margin-left:var(--sidebar-w);
 }
-.reveal{opacity:0;transform:translateY(22px);transition:.75s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.16,1,.3,1)}
 .reveal.show{opacity:1;transform:none}
 .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:45}
 
-/* RESPONSIVE */
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .skills-grid{grid-template-columns:1fr}
+}
 @media(max-width:900px){
   :root{--sidebar-w:0px}
-  .sidebar{transform:translateX(-100%);width:256px}
+  .sidebar{transform:translateX(-100%);width:260px}
   .sidebar.open{transform:none}
   .main{margin-left:0}
   .menu-btn{display:block}
-  .topbar{padding:14px 20px}
-  .content{padding:28px 20px}
+  .topbar{padding:13px 18px}
+  .content{padding:30px 20px}
   .metrics{grid-template-columns:repeat(2,1fr)}
   .backdrop.show{display:block}
   footer{margin-left:0}
+  section{margin-bottom:64px}
 }
 @media(max-width:720px){
-  .hero-grid{flex-direction:column-reverse}
-  .hero-col-photo{width:140px}
-  .hero-photo{width:140px;height:140px}
+  .hero-grid{flex-direction:column-reverse;gap:26px}
+  .hero-col-photo{width:132px}
+  .hero-photo{width:132px;height:132px;border-radius:16px}
+  .card,.project{padding:22px 20px}
 }
 @media(max-width:480px){
-  .metrics{grid-template-columns:1fr}
-  .content{padding:22px 16px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .content{padding:24px 16px}
   .hero-cta .btn{flex:1;justify-content:center}
   .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .tag-item{grid-template-columns:64px 1fr;gap:11px}
+  .contact-box{padding:34px 22px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -445,23 +473,24 @@ footer{
     <!-- ABOUT -->
     <section id="about" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">01 — PROFIL</div>
+        <div class="sec-num">01 — Profil</div>
         <h2 class="sec-title">Tentang Saya</h2>
         <p class="sec-sub">Latar belakang, fokus teknis, dan nilai yang saya bawa ke lingkungan kerja.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
       <div class="card">
         <p class="card-desc" style="margin-top:0">
-          Saya <strong style="color:var(--text)">Dillon Diandri</strong>, engineer instrumentasi &amp; elektrikal lulusan
+          Saya <strong>Dillon Diandri</strong>, engineer instrumentasi &amp; elektrikal lulusan
           Diploma IV PEM Akamigas Cepu — Politeknik Energi dan Mineral di bawah naungan Kementerian ESDM, salah satu
           lembaga vokasi terkemuka di sektor energi Indonesia. Selama empat tahun studi dan tiga periode magang di
           lingkungan kilang dan jasa energi nasional, saya membangun fondasi kuat pada sistem pengukuran, kontrol
           proses, kalibrasi instrumen lapangan, serta prosedur keselamatan migas.
         </p>
         <p class="card-desc">
-          Pengalaman utama saya mencakup kalibrasi instrumen berstandar <strong style="color:var(--text)">ISO/IEC 17025</strong>
+          Pengalaman utama saya mencakup kalibrasi instrumen berstandar <strong>ISO/IEC 17025</strong>
           di anak perusahaan PGN (PT PGAS Solution) selama 6 bulan penuh — mulai dari pressure gauge, temperature gauge,
           hingga Electronic Volume Corrector untuk custody transfer gas bumi. Saya juga pernah magang di unit RCC
-          <strong style="color:var(--text)">PT Kilang Pertamina Internasional</strong>, tempat saya mengenal langsung
+          <strong>PT Kilang Pertamina Internasional</strong>, tempat saya mengenal langsung
           sistem instrumentasi dan DCS kilang skala besar.
         </p>
         <p class="card-desc">
@@ -472,7 +501,6 @@ footer{
         <div class="meta-row">
           <span>Domisili: <b>Cepu, Jawa Tengah</b></span>
           <span>Relokasi: <b>Siap Nasional</b></span>
-          <span>NIM: <b>221440004</b></span>
           <span>Status: <b>Open to Work</b></span>
         </div>
       </div>
@@ -481,9 +509,10 @@ footer{
     <!-- EXPERIENCE -->
     <section id="experience" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">02 — PENGALAMAN</div>
+        <div class="sec-num">02 — Pengalaman</div>
         <h2 class="sec-title">Riwayat Kerja</h2>
         <p class="sec-sub">Pengalaman langsung di fasilitas kilang, laboratorium kalibrasi, dan jasa energi nasional.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
 
       <div class="card">
@@ -497,14 +526,14 @@ footer{
         <p class="card-desc">
           Anak perusahaan PT Perusahaan Gas Negara (PGN) Tbk yang bergerak di bidang layanan operasi &amp; pemeliharaan
           infrastruktur gas bumi. Terlibat penuh dalam kegiatan kalibrasi instrumen berstandar
-          <strong style="color:var(--text)">ISO/IEC 17025</strong> di laboratorium dan titik distribusi jaringan gas PGN.
+          <strong>ISO/IEC 17025</strong> di laboratorium dan titik distribusi jaringan gas PGN.
         </p>
         <ul class="card-list">
-          <li>Kalibrasi <strong style="color:var(--text)">pressure gauge</strong> menggunakan dead weight tester Additel 920 (akurasi ±0,1% FS): verifikasi linearitas, repeatability, hysteresis, dan penyusunan laporan kalibrasi tertelusur KAN/SNSU</li>
-          <li>Kalibrasi <strong style="color:var(--text)">temperature gauge &amp; instrumen suhu</strong> dengan oil bath WIKA Microbath CTB9100 (−30 s.d. +150 °C) dan CTB9500 (−45 s.d. +200 °C); dibandingkan terhadap reference thermometer bersertifikat nasional</li>
-          <li>Kalibrasi <strong style="color:var(--text)">Electronic Volume Corrector (EVC)</strong> untuk sistem custody transfer metering gas: verifikasi koreksi tekanan, suhu, dan faktor kompresibilitas gas sesuai standar AGA/ISO</li>
-          <li>Pengoperasian dan verifikasi <strong style="color:var(--text)">meter gas turbin &amp; diafragma</strong>: perhitungan K-factor, analisis linearitas aliran, dan validasi pembacaan DP transmitter</li>
-          <li>Penyusunan <strong style="color:var(--text)">sertifikat kalibrasi</strong> sesuai ketertelusuran metrologi nasional beserta estimasi ketidakpastian pengukuran (GUM method)</li>
+          <li>Kalibrasi <strong>pressure gauge</strong> menggunakan dead weight tester Additel 920 (akurasi ±0,1% FS): verifikasi linearitas, repeatability, hysteresis, dan penyusunan laporan kalibrasi tertelusur KAN/SNSU</li>
+          <li>Kalibrasi <strong>temperature gauge &amp; instrumen suhu</strong> dengan oil bath WIKA Microbath CTB9100 (−30 s.d. +150 °C) dan CTB9500 (−45 s.d. +200 °C); dibandingkan terhadap reference thermometer bersertifikat nasional</li>
+          <li>Kalibrasi <strong>Electronic Volume Corrector (EVC)</strong> untuk sistem custody transfer metering gas: verifikasi koreksi tekanan, suhu, dan faktor kompresibilitas gas sesuai standar AGA/ISO</li>
+          <li>Pengoperasian dan verifikasi <strong>meter gas turbin &amp; diafragma</strong>: perhitungan K-factor, analisis linearitas aliran, dan validasi pembacaan DP transmitter</li>
+          <li>Penyusunan <strong>sertifikat kalibrasi</strong> sesuai ketertelusuran metrologi nasional beserta estimasi ketidakpastian pengukuran (GUM method)</li>
           <li>Troubleshooting sistem metering di titik distribusi PGN: identifikasi penyimpangan pembacaan, pengecekan kondisi sensor, dan koordinasi tindakan korektif</li>
           <li>Penerapan prosedur K3 dan PTW (Permit to Work) di lingkungan operasional gas bumi</li>
         </ul>
@@ -523,17 +552,17 @@ footer{
           <span class="card-badge">Des 2023 – Jan 2024</span>
         </div>
         <p class="card-desc">
-          Magang di unit <strong style="color:var(--text)">Residue Catalytic Cracking (RCC)</strong>, salah satu unit
+          Magang di unit <strong>Residue Catalytic Cracking (RCC)</strong>, salah satu unit
           proses kritis Kilang RU VI Balongan yang mengolah residu minyak bumi menjadi BBM, LPG, dan propilen.
           Fokus pada pemeliharaan instrumentasi dan pemahaman sistem kontrol proses kilang skala besar.
         </p>
         <ul class="card-list">
-          <li>Observasi dan penanganan <strong style="color:var(--text)">field transmitter</strong> (pressure, temperature, flow, level) pada unit RCC; memahami prinsip kerja dan prosedur loop checking</li>
-          <li>Pengamatan <strong style="color:var(--text)">control valve dan aktuator</strong>: stroke test, pengecekan positioner, dan identifikasi fail-safe mode (fail-open/fail-close) sesuai SIS/PSD</li>
+          <li>Observasi dan penanganan <strong>field transmitter</strong> (pressure, temperature, flow, level) pada unit RCC; memahami prinsip kerja dan prosedur loop checking</li>
+          <li>Pengamatan <strong>control valve dan aktuator</strong>: stroke test, pengecekan positioner, dan identifikasi fail-safe mode (fail-open/fail-close) sesuai SIS/PSD</li>
           <li>Observasi instrumen analitik: gas chromatograph, O₂ analyzer, dan instrumen kualitas produk downstream</li>
-          <li>Analisis sistem kontrol <strong style="color:var(--text)">furnace unit RCC</strong>: pemantauan distribusi temperatur multi-titik, kontrol rasio udara-bahan bakar, dan integrasi sistem proteksi burner</li>
-          <li>Observasi operasi <strong style="color:var(--text)">DCS Yokogawa</strong> di ruang kontrol: monitoring trend, alarm management, dan interaksi operator dengan sistem kontrol</li>
-          <li>Pembacaan dan interpretasi <strong style="color:var(--text)">P&amp;ID, loop diagram, dan datasheet instrumen</strong> lapangan unit RCC</li>
+          <li>Analisis sistem kontrol <strong>furnace unit RCC</strong>: pemantauan distribusi temperatur multi-titik, kontrol rasio udara-bahan bakar, dan integrasi sistem proteksi burner</li>
+          <li>Observasi operasi <strong>DCS Yokogawa</strong> di ruang kontrol: monitoring trend, alarm management, dan interaksi operator dengan sistem kontrol</li>
+          <li>Pembacaan dan interpretasi <strong>P&amp;ID, loop diagram, dan datasheet instrumen</strong> lapangan unit RCC</li>
           <li>Pemahaman sistem keselamatan proses: interlock logic, Emergency Shutdown System (ESD), dan prosedur isolasi energi</li>
         </ul>
       </div>
@@ -547,7 +576,7 @@ footer{
           <span class="card-badge">Seminar Nasional</span>
         </div>
         <p class="card-desc">
-          Mempresentasikan paper berjudul <strong style="color:var(--text)">"Kalibrasi Temperature Gauge Menggunakan
+          Mempresentasikan paper berjudul <strong>"Kalibrasi Temperature Gauge Menggunakan
           Oil Bath di Industri Kilang"</strong> pada Seminar Nasional Teknik Energi dan Mineral (SNTEEM) yang
           diselenggarakan PEM Akamigas. Paper membahas prosedur kalibrasi temperatur menggunakan oil bath,
           analisis ketidakpastian pengukuran (GUM), dan relevansinya dalam konteks pemeliharaan instrumentasi
@@ -559,9 +588,10 @@ footer{
     <!-- EDUCATION -->
     <section id="education" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">03 — PENDIDIKAN</div>
+        <div class="sec-num">03 — Pendidikan</div>
         <h2 class="sec-title">Latar Belakang Akademik</h2>
         <p class="sec-sub">Pendidikan vokasi terapan yang berfokus pada sektor energi dan mineral nasional.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
       <div class="card">
         <div class="card-top">
@@ -573,7 +603,7 @@ footer{
         </div>
         <p class="card-desc">
           Politeknik Energi dan Mineral Akamigas (PEM Akamigas) adalah perguruan tinggi vokasi di bawah naungan
-          <strong style="color:var(--text)">Kementerian Energi dan Sumber Daya Mineral (ESDM)</strong> yang berfokus
+          <strong>Kementerian Energi dan Sumber Daya Mineral (ESDM)</strong> yang berfokus
           mencetak tenaga ahli sektor energi Indonesia. Program D-IV Teknik Instrumentasi Kilang menekankan penguasaan
           mendalam pada sistem pengukuran, kontrol proses, dan keselamatan industri migas.
         </p>
@@ -598,9 +628,10 @@ footer{
     <!-- PROJECT -->
     <section id="project" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">04 — TUGAS AKHIR</div>
+        <div class="sec-num">04 — Tugas Akhir</div>
         <h2 class="sec-title">Proyek Unggulan</h2>
         <p class="sec-sub">Sistem pengukuran sphericity pasir proppant berbasis computer vision.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
       <div class="project">
         <div class="project-tag">Capstone · Computer Vision · Raspberry Pi · API RP 19C</div>
@@ -609,7 +640,7 @@ footer{
           Sistem pengukuran tingkat kebulatan (sphericity) butiran pasir proppant secara otomatis menggunakan
           pengolahan citra digital. Proppant adalah material granular kritis dalam proses hydraulic fracturing
           (fracking) sumur migas — kualitasnya sangat mempengaruhi permeabilitas retakan dan produktivitas sumur.
-          Sistem ini mengikuti standar <strong style="color:var(--text)">API RP 19C</strong> dengan formula
+          Sistem ini mengikuti standar <strong>API RP 19C</strong> dengan formula
           sphericity = (D<sub>min</sub>/D<sub>max</sub>) × 100% dan mengklasifikasikan butiran ke dalam 4 kategori
           kualitas. Dibangun modular dengan Python &amp; OpenCV pada Raspberry Pi 5 dengan antarmuka layar sentuh DSI.
         </p>
@@ -617,13 +648,13 @@ footer{
           <img src="images/proppant-alat.jpg" alt="Perangkat sistem pengukuran: Raspberry Pi 5, kamera HQ IMX477, dan display Waveshare DSI" class="project-photo" loading="lazy" data-title="Perangkat Sistem Pengukuran Sphericity Proppant">
           <img src="images/proppant-deteksi.jpg" alt="Hasil deteksi partikel proppant dengan garis D-max dan D-min pada citra biner" class="project-photo" loading="lazy" data-title="Hasil Deteksi Partikel — D-max dan D-min">
         </div>
-        <div style="margin-bottom:20px">
-          <p style="font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">Klasifikasi Kualitas (API RP 19C)</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <span style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#86efac;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Excellent ≥ 90%</span>
-            <span style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);color:var(--accent-light);font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Good 80–89%</span>
-            <span style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#fcd34d;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Fair 70–79%</span>
-            <span style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5;font-family:var(--mono);font-size:.75rem;padding:5px 13px;border-radius:6px">Poor &lt; 70%</span>
+        <div style="margin-bottom:22px">
+          <p style="font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">Klasifikasi Kualitas (API RP 19C)</p>
+          <div class="class-chips">
+            <span class="class-chip" style="background:rgba(53,208,181,.12);border:1px solid rgba(53,208,181,.3);color:#7fe9d6">Excellent ≥ 90%</span>
+            <span class="class-chip" style="background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#93c5fd">Good 80–89%</span>
+            <span class="class-chip" style="background:rgba(240,164,65,.12);border:1px solid rgba(240,164,65,.3);color:#fcd39b">Fair 70–79%</span>
+            <span class="class-chip" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5">Poor &lt; 70%</span>
           </div>
         </div>
         <div class="spec-grid">
@@ -649,9 +680,10 @@ footer{
     <!-- CERTIFICATES GALLERY -->
     <section id="certificates" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">05 — SERTIFIKAT</div>
+        <div class="sec-num">05 — Sertifikat</div>
         <h2 class="sec-title">Galeri Sertifikat &amp; Dokumentasi</h2>
         <p class="sec-sub">Klik thumbnail untuk melihat gambar penuh. Navigasi dengan tombol panah atau keyboard ← →.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
       <!--
         ================================================================
@@ -665,54 +697,168 @@ footer{
       <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS — INSTRUMENT TAG LIST -->
     <section id="skills" class="reveal">
       <div class="sec-head">
-        <div class="sec-num">06 — KOMPETENSI</div>
+        <div class="sec-num">06 — Kompetensi</div>
         <h2 class="sec-title">Keahlian Teknis</h2>
-        <p class="sec-sub">Kemampuan yang dikembangkan melalui pendidikan vokasi, magang industri, dan proyek mandiri.</p>
+        <p class="sec-sub">Setiap keahlian diberi kode tag ala instrumentasi — lengkap dengan konteks di mana keahlian tersebut saya gunakan.</p>
+        <div class="ruler" aria-hidden="true"></div>
       </div>
       <div class="skills-grid">
+
         <div class="skill-card">
           <div class="skill-card-head">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
             <h4>Kalibrasi &amp; Metrologi</h4>
           </div>
-          <div class="skill"><div class="skill-top"><span>Kalibrasi Pressure (Additel 920)</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Kalibrasi Temperatur (Oil Bath)</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-w="86"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>ISO/IEC 17025 &amp; Sertifikat Kalibrasi</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>EVC &amp; Custody Transfer Metering</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
+          <p class="skill-card-sub">6 bulan praktik penuh waktu di laboratorium kalibrasi PT PGAS Solution.</p>
+          <ul class="tag-list">
+            <li class="tag-item">
+              <span class="tag-code">CAL-01</span>
+              <div>
+                <div class="tag-name">Kalibrasi Pressure Gauge</div>
+                <div class="tag-desc">Dead weight tester Additel 920 (±0,1% FS) — verifikasi linearitas, repeatability, dan hysteresis.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">CAL-02</span>
+              <div>
+                <div class="tag-name">Kalibrasi Temperature Gauge</div>
+                <div class="tag-desc">Oil bath WIKA CTB9100/CTB9500 terhadap reference thermometer bersertifikat nasional.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">CAL-03</span>
+              <div>
+                <div class="tag-name">ISO/IEC 17025 &amp; Sertifikat Kalibrasi</div>
+                <div class="tag-desc">Penyusunan sertifikat tertelusur KAN/SNSU dengan estimasi ketidakpastian metode GUM.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">CAL-04</span>
+              <div>
+                <div class="tag-name">EVC &amp; Custody Transfer Metering</div>
+                <div class="tag-desc">Verifikasi koreksi tekanan, suhu, dan kompresibilitas gas sesuai standar AGA/ISO.</div>
+              </div>
+            </li>
+          </ul>
         </div>
+
         <div class="skill-card">
           <div class="skill-card-head">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
             <h4>Kontrol &amp; Otomasi</h4>
           </div>
-          <div class="skill"><div class="skill-top"><span>PLC Siemens S7-1200/1500 (TIA Portal)</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>DCS Yokogawa Centum VP</span><span>74%</span></div><div class="skill-track"><div class="skill-fill" data-w="74"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Pembacaan P&amp;ID &amp; Loop Diagram</span><span>83%</span></div><div class="skill-track"><div class="skill-fill" data-w="83"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>AutoCAD P&amp;ID</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+          <p class="skill-card-sub">Dipelajari melalui laboratorium kampus dan observasi kilang RU VI Balongan.</p>
+          <ul class="tag-list">
+            <li class="tag-item">
+              <span class="tag-code">PLC-01</span>
+              <div>
+                <div class="tag-name">PLC Siemens S7-1200/1500</div>
+                <div class="tag-desc">Pemrograman ladder &amp; FBD di TIA Portal untuk sistem kontrol proses dan interlock.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">DCS-01</span>
+              <div>
+                <div class="tag-name">DCS Yokogawa Centum VP</div>
+                <div class="tag-desc">Monitoring trend, alarm management, dan operasi ruang kontrol kilang skala besar.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">DOC-01</span>
+              <div>
+                <div class="tag-name">P&amp;ID &amp; Loop Diagram</div>
+                <div class="tag-desc">Pembacaan dan interpretasi dokumen instrumentasi kilang: simbol ISA, tag number, dan alur sinyal.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">CAD-01</span>
+              <div>
+                <div class="tag-name">AutoCAD P&amp;ID</div>
+                <div class="tag-desc">Penggambaran diagram perpipaan dan instrumentasi untuk dokumentasi teknis.</div>
+              </div>
+            </li>
+          </ul>
         </div>
+
         <div class="skill-card">
           <div class="skill-card-head">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             <h4>Embedded &amp; Computer Vision</h4>
           </div>
-          <div class="skill"><div class="skill-top"><span>Python &amp; OpenCV</span><span>84%</span></div><div class="skill-track"><div class="skill-fill" data-w="84"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Raspberry Pi &amp; ESP32</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-w="86"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>IoT (MQTT · Node-RED · PID)</span><span>76%</span></div><div class="skill-track"><div class="skill-fill" data-w="76"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Pengolahan Citra Digital</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+          <p class="skill-card-sub">Dikembangkan lewat tugas akhir dan proyek IoT mandiri.</p>
+          <ul class="tag-list">
+            <li class="tag-item">
+              <span class="tag-code">CV-01</span>
+              <div>
+                <div class="tag-name">Python &amp; OpenCV</div>
+                <div class="tag-desc">Segmentasi citra (HSV, Otsu, edge), deteksi kontur, dan pengukuran Feret diameter untuk sistem sphericity proppant.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">EMB-01</span>
+              <div>
+                <div class="tag-name">Raspberry Pi &amp; ESP32</div>
+                <div class="tag-desc">Integrasi kamera HQ IMX477, sensor lapangan, display DSI/Nextion, dan firmware embedded.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">IOT-01</span>
+              <div>
+                <div class="tag-name">IoT &amp; Kontrol PID</div>
+                <div class="tag-desc">Arsitektur MQTT, dashboard Node-RED, backend MySQL, dan implementasi kontrol PID pada sistem pengisian BBM.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">IMG-01</span>
+              <div>
+                <div class="tag-name">Pengolahan Citra Digital</div>
+                <div class="tag-desc">Pipeline pengukuran otomatis: kalibrasi piksel-ke-mm, thresholding adaptif, dan analisis morfologi partikel.</div>
+              </div>
+            </li>
+          </ul>
         </div>
+
         <div class="skill-card">
           <div class="skill-card-head">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <h4>Keselamatan &amp; Dokumentasi</h4>
           </div>
-          <div class="skill"><div class="skill-top"><span>K3 Industri Migas</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Well Control (IWCF Level 1)</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" data-w="78"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Laporan Teknis &amp; KTI</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
-          <div class="skill"><div class="skill-top"><span>Microsoft Office Suite</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+          <p class="skill-card-sub">Didukung sertifikasi BNSP dan IWCF yang masih berlaku.</p>
+          <ul class="tag-list">
+            <li class="tag-item">
+              <span class="tag-code">HSE-01</span>
+              <div>
+                <div class="tag-name">K3 Industri Migas</div>
+                <div class="tag-desc">Prosedur PTW, isolasi energi, dan budaya keselamatan — tersertifikasi BNSP Operator K3 Migas.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">HSE-02</span>
+              <div>
+                <div class="tag-name">Well Control (IWCF Level 1)</div>
+                <div class="tag-desc">Pemahaman dasar pengendalian sumur: kick detection, prinsip BOP, dan prosedur shut-in.</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">DOC-02</span>
+              <div>
+                <div class="tag-name">Laporan Teknis &amp; Karya Ilmiah</div>
+                <div class="tag-desc">Penulisan laporan kalibrasi, KTI, dan paper seminar nasional (SNTEEM).</div>
+              </div>
+            </li>
+            <li class="tag-item">
+              <span class="tag-code">OFC-01</span>
+              <div>
+                <div class="tag-name">Microsoft Office Suite</div>
+                <div class="tag-desc">Word, Excel, dan PowerPoint untuk dokumentasi, analisis data, dan presentasi — tersertifikasi Trust Training Partners.</div>
+              </div>
+            </li>
+          </ul>
         </div>
+
       </div>
       <div class="chips">
         <span class="chip">Additel 920</span>
@@ -781,8 +927,7 @@ footer{
 <script>
 // ================================================================
 // GALERI SERTIFIKAT & DOKUMENTASI
-// ----------------------------------------------------------------
-// CARA MENAMBAH / MENGGANTI GAMBAR:
+// CARA MENAMBAH GAMBAR:
 //   1. Letakkan file gambar di folder images/ di repositori GitHub
 //   2. Tambahkan item baru ke array galleryItems di bawah:
 //      { src: 'images/nama-file.jpg', title: 'Judul Gambar' }
@@ -798,7 +943,6 @@ const galleryItems = [
   { src: 'images/magang-pgas-2.jpg',             title: 'Dokumentasi Magang — PT PGAS Solution (Kalibrasi Temperature)' },
 ];
 
-// Render gallery grid
 const grid = document.getElementById('galleryGrid');
 galleryItems.forEach((item, i) => {
   const div = document.createElement('div');
@@ -815,14 +959,13 @@ galleryItems.forEach((item, i) => {
   grid.appendChild(div);
 });
 
-// Foto di luar galeri (card-photo & project-photo) juga bisa dibuka lightbox
+// Foto di luar galeri juga bisa dibuka lightbox
 document.querySelectorAll('.card-photo, .project-photo').forEach(img => {
   img.addEventListener('click', () => {
     const title = img.dataset.title || img.alt;
     const src = img.getAttribute('src');
     const idx = galleryItems.findIndex(g => g.src === src);
     if (idx !== -1) { openLightbox(idx); return; }
-    // Gambar tidak ada di galeri — tampilkan saja
     lbImg.src = src; lbImg.alt = title;
     lbCaption.textContent = title; lbCounter.textContent = '';
     document.getElementById('lbPrev').style.visibility = 'hidden';
@@ -831,7 +974,6 @@ document.querySelectorAll('.card-photo, .project-photo').forEach(img => {
   });
 });
 
-// Lightbox logic
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 const lbCaption = document.getElementById('lbCaption');
@@ -865,12 +1007,7 @@ document.addEventListener('keydown', e => {
 
 // Scroll reveal
 const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('show');
-      e.target.querySelectorAll('.skill-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
 }, { threshold: .1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
