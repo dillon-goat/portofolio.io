@@ -45,8 +45,10 @@ body::before{
 .sidebar{
   width:var(--sidebar-w);flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);
   position:fixed;inset:0 auto 0 0;padding:30px 0 22px;display:flex;flex-direction:column;
-  z-index:50;overflow-y:auto;transition:transform .25s ease;
+  z-index:60;overflow-y:auto;transition:transform .25s ease;
+  transform:translateX(-100%);box-shadow:24px 0 60px -30px rgba(0,0,0,.6);
 }
+.sidebar.open{transform:none}
 .brand{padding:0 26px 22px;border-bottom:1px solid var(--line-soft);margin-bottom:14px}
 .brand-avatar{
   width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center top;
@@ -91,7 +93,7 @@ body::before{
 .sidebar-foot svg{width:16px;height:16px;stroke-width:1.8}
 
 /* ============ MAIN ============ */
-.main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+.main{flex:1;min-width:0}
 .topbar{
   position:sticky;top:0;z-index:40;background:rgba(10,14,19,.82);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line);padding:15px 44px;
@@ -100,10 +102,12 @@ body::before{
 .topbar-title{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
 .topbar-title b{color:var(--text);font-weight:500}
 .topbar-meta{font-family:var(--mono);font-size:.7rem;color:var(--faint)}
-.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);
-  border-radius:9px;padding:7px 9px;cursor:pointer}
-.menu-btn svg{width:20px;height:20px;display:block}
-.content{padding:52px 48px;max-width:1080px}
+.menu-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);color:var(--text);
+  border-radius:9px;padding:7px 12px;cursor:pointer;font-family:var(--mono);font-size:.72rem;transition:.15s}
+.menu-btn:hover{border-color:var(--accent);color:var(--accent)}
+.menu-btn svg{width:18px;height:18px;display:block;stroke-width:2}
+.menu-btn .menu-txt{letter-spacing:.08em;text-transform:uppercase}
+.content{padding:52px 48px;max-width:1120px;margin:0 auto}
 section{scroll-margin-top:84px;margin-bottom:88px}
 
 /* ============ SECTION HEADERS (dengan "tick ruler") ============ */
@@ -312,28 +316,30 @@ strong{color:var(--text);font-weight:600}
 
 footer{
   text-align:center;color:var(--faint);font-size:.76rem;font-family:var(--mono);
-  padding:28px 40px;border-top:1px solid var(--line);margin-left:var(--sidebar-w);
+  padding:28px 40px;border-top:1px solid var(--line);
 }
 .reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.16,1,.3,1)}
 .reveal.show{opacity:1;transform:none}
-.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:45}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:55}
+.backdrop.show{display:block}
+.sidebar-close{
+  position:absolute;top:18px;right:14px;background:none;border:1px solid var(--line);
+  color:var(--muted);width:32px;height:32px;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;
+}
+.sidebar-close:hover{border-color:var(--accent);color:var(--accent)}
+.sidebar-close svg{width:16px;height:16px;stroke-width:2;display:block}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:980px){
   .skills-grid{grid-template-columns:1fr}
 }
 @media(max-width:900px){
-  :root{--sidebar-w:0px}
-  .sidebar{transform:translateX(-100%);width:260px}
-  .sidebar.open{transform:none}
-  .main{margin-left:0}
-  .menu-btn{display:block}
   .topbar{padding:13px 18px}
   .content{padding:30px 20px}
   .metrics{grid-template-columns:repeat(2,1fr)}
-  .backdrop.show{display:block}
-  footer{margin-left:0}
   section{margin-bottom:64px}
+  .menu-btn .menu-txt{display:none}
 }
 @media(max-width:720px){
   .hero-grid{flex-direction:column-reverse;gap:26px}
@@ -361,6 +367,9 @@ footer{
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <div class="brand">
     <img src="images/profil.jpg" alt="Foto profil Dillon Diandri" class="brand-avatar">
     <div class="brand-status"><span class="dot"></span>Open to Work</div>
@@ -420,10 +429,11 @@ footer{
 <!-- MAIN -->
 <div class="main">
   <div class="topbar">
-    <button class="menu-btn" id="menuBtn" aria-label="Buka menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu navigasi" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span class="menu-txt">Menu</span>
     </button>
-    <div class="topbar-title">portfolio / <b id="crumb">overview</b></div>
+    <div class="topbar-title">Dillon Diandri / <b id="crumb">overview</b></div>
     <div class="topbar-meta">PEM Akamigas · Cepu, ID</div>
   </div>
 
@@ -1025,13 +1035,19 @@ const spy = new IntersectionObserver(entries => {
 }, { rootMargin: '-45% 0px -50% 0px' });
 secs.forEach(s => spy.observe(s));
 
-// Mobile sidebar
+// Sidebar drawer (semua ukuran layar — dibuka lewat tombol Menu)
 const sb = document.getElementById('sidebar');
 const bd = document.getElementById('backdrop');
-document.getElementById('menuBtn').addEventListener('click', () => { sb.classList.add('open'); bd.classList.add('show'); });
-function closeSb() { sb.classList.remove('open'); bd.classList.remove('show'); }
+const menuBtn = document.getElementById('menuBtn');
+function openSb() { sb.classList.add('open'); bd.classList.add('show'); menuBtn.setAttribute('aria-expanded','true'); }
+function closeSb() { sb.classList.remove('open'); bd.classList.remove('show'); menuBtn.setAttribute('aria-expanded','false'); }
+menuBtn.addEventListener('click', openSb);
+document.getElementById('sidebarClose').addEventListener('click', closeSb);
 bd.addEventListener('click', closeSb);
 document.querySelectorAll('.nav-item').forEach(a => a.addEventListener('click', closeSb));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && sb.classList.contains('open')) closeSb();
+});
 </script>
 </body>
 </html>
