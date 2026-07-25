@@ -440,6 +440,72 @@ section.alt{background:transparent}
   background:var(--gold);
   margin-right:8px;
 }
+.cert-doc{cursor:pointer}
+.cert-doc .doc-zoom{
+  position:absolute;top:12px;right:26px;z-index:1;
+  width:34px;height:34px;
+  clip-path:var(--hex);
+  background:var(--gold);
+  color:var(--navy-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:900;
+  opacity:0;transition:opacity .25s ease;
+  pointer-events:none;
+}
+.cert-doc:hover .doc-zoom{opacity:1}
+
+/* ---------- LIGHTBOX (preview sertifikat) ---------- */
+.lb{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(6,11,36,.94);
+  backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;
+}
+.lb.open{display:flex}
+.lb-inner{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  max-width:92vw;max-height:92vh;
+}
+.lb-img{
+  max-width:88vw;max-height:74vh;
+  object-fit:contain;
+  border:2px solid var(--gold);
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  background:var(--navy-deep);
+}
+.lb-caption{
+  font-family:'Archivo',sans-serif;font-weight:700;
+  font-size:.95rem;color:var(--white);text-align:center;
+  max-width:640px;padding:0 70px;
+}
+.lb-counter{
+  font-family:'Archivo',sans-serif;font-weight:700;
+  font-size:.75rem;letter-spacing:.25em;color:var(--gold);
+}
+.lb-close,.lb-prev,.lb-next{
+  position:fixed;z-index:1001;
+  width:48px;height:48px;
+  clip-path:var(--hex);
+  background:var(--gold);
+  color:var(--navy-deep);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:900;
+  font-family:'Archivo',sans-serif;
+  transition:background .2s ease, transform .2s ease;
+}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:var(--gold-soft);transform:scale(1.08)}
+.lb-close{top:22px;right:26px}
+.lb-prev{left:22px;top:50%;transform:translateY(-50%)}
+.lb-next{right:22px;top:50%;transform:translateY(-50%)}
+.lb-prev:hover{transform:translateY(-50%) scale(1.08)}
+.lb-next:hover{transform:translateY(-50%) scale(1.08)}
+@media (max-width:620px){
+  .lb-caption{padding:0 16px;font-size:.85rem}
+  .lb-prev{left:10px}
+  .lb-next{right:10px}
+  .lb-close{top:14px;right:14px}
+}
 /* PHOTO: scan sertifikat 1 — file: images/sertifikat-bnsp-instrument.jpg */
 #cert-photo-1{background:url('images/sertifikat-bnsp-instrument.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
 /* PHOTO: scan sertifikat 2 — file: images/sertifikat-k3-migas.jpg */
@@ -742,26 +808,32 @@ footer b{color:var(--gold);font-weight:700}
     <div class="cert-gallery">
       <figure class="cert-doc reveal">
         <div class="doc-photo" id="cert-photo-1"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">BNSP Instrumentation Technician Level I</figcaption>
       </figure>
       <figure class="cert-doc reveal d1">
         <div class="doc-photo" id="cert-photo-2"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">BNSP K3 Migas — Safety Operator</figcaption>
       </figure>
       <figure class="cert-doc reveal d2">
         <div class="doc-photo" id="cert-photo-3"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">IWCF Well Control Level 1</figcaption>
       </figure>
       <figure class="cert-doc reveal">
         <div class="doc-photo" id="cert-photo-4"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">TOEIC — Score 630</figcaption>
       </figure>
       <figure class="cert-doc reveal d1">
         <div class="doc-photo" id="cert-photo-5"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">SNTEM — Paper Author &amp; Presenter</figcaption>
       </figure>
       <figure class="cert-doc reveal d2">
         <div class="doc-photo" id="cert-photo-6"></div>
+        <span class="doc-zoom" aria-hidden="true">+</span>
         <figcaption class="doc-label">Applied Microsoft Office</figcaption>
       </figure>
     </div>
@@ -799,6 +871,18 @@ footer b{color:var(--gold);font-weight:700}
   © 2026 <b>Dillon Diandri</b> · Refinery Instrumentation Engineering
 </footer>
 
+<!-- ==================== LIGHTBOX (preview sertifikat) ==================== -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Tampilan sertifikat ukuran besar">
+  <button class="lb-close" id="lbClose" aria-label="Tutup">&#10005;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Sertifikat sebelumnya">&#8249;</button>
+  <div class="lb-inner">
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+  <button class="lb-next" id="lbNext" aria-label="Sertifikat berikutnya">&#8250;</button>
+</div>
+
 <script>
 /* Scroll reveal — vanilla JS, hormati prefers-reduced-motion */
 (function(){
@@ -817,6 +901,72 @@ footer b{color:var(--gold);font-weight:700}
     });
   }, { threshold: 0.15 });
   els.forEach(function(el){ io.observe(el); });
+})();
+
+/* ================================================================
+   LIGHTBOX GALERI SERTIFIKAT
+   CARA MENAMBAH / MENGGANTI: edit array certItems di bawah.
+   Urutan harus sama dengan urutan kartu di section Certificate Gallery.
+   ================================================================ */
+(function(){
+  var certItems = [
+    { src: 'images/sertifikat-bnsp-instrument.jpg', title: 'BNSP Instrumentation Technician Level I (PPSDM Migas)' },
+    { src: 'images/sertifikat-k3-migas.jpg',        title: 'BNSP K3 Migas — Oil & Gas Safety Operator' },
+    { src: 'images/sertifikat-iwcf.jpg',            title: 'IWCF Well Control Level 1' },
+    { src: 'images/sertifikat-toeic.jpg',           title: 'TOEIC — Score 630' },
+    { src: 'images/sertifikat-sntem.jpg',           title: 'SNTEM — Paper Author & Presenter' },
+    { src: 'images/sertifikat-office.jpg',          title: 'Applied Microsoft Office — Trust Training Partners' }
+  ];
+
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCaption = document.getElementById('lbCaption');
+  var lbCounter = document.getElementById('lbCounter');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var current = 0;
+
+  function show(){
+    var item = certItems[current];
+    lbImg.src = item.src;
+    lbImg.alt = item.title;
+    lbCaption.textContent = item.title;
+    lbCounter.textContent = (current + 1) + ' / ' + certItems.length;
+    lbPrev.style.visibility = current > 0 ? 'visible' : 'hidden';
+    lbNext.style.visibility = current < certItems.length - 1 ? 'visible' : 'hidden';
+  }
+  function openLb(i){
+    current = i; show();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Pasang klik pada tiap kartu sertifikat sesuai urutan
+  var docs = document.querySelectorAll('#certificate-gallery .cert-doc');
+  docs.forEach(function(doc, i){
+    doc.addEventListener('click', function(){ openLb(i); });
+    doc.setAttribute('tabindex', '0');
+    doc.setAttribute('role', 'button');
+    doc.setAttribute('aria-label', 'Lihat ' + certItems[i].title + ' ukuran besar');
+    doc.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); }
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', function(){ if (current > 0) { current--; show(); } });
+  lbNext.addEventListener('click', function(){ if (current < certItems.length - 1) { current++; show(); } });
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft' && current > 0) { current--; show(); }
+    if (e.key === 'ArrowRight' && current < certItems.length - 1) { current++; show(); }
+  });
 })();
 </script>
 
