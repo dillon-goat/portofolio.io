@@ -189,9 +189,8 @@ header.nav{
   width:calc(100% - 14px);
   height:calc(100% - 14px);
   clip-path:var(--hex);
-  /* PHOTO: foto profil utama (hero). Ganti background di bawah dengan:
-     background:url('foto-hero.jpg') center/cover no-repeat; */
-  background:linear-gradient(160deg,#16266b,#0a1440);
+  /* PHOTO: foto profil utama (hero) — file: images/foto-hero.jpg */
+  background:url('images/foto-hero.jpg') center/cover no-repeat, linear-gradient(160deg,#16266b,#0a1440);
   display:flex;align-items:center;justify-content:center;
   color:var(--ice);font-size:.85rem;letter-spacing:.08em;text-align:center;
   padding:20px;
@@ -222,9 +221,8 @@ section.alt{background:transparent}
   position:relative;
   width:100%;height:100%;
   clip-path:polygon(18% 0, 100% 0, 82% 100%, 0 100%);
-  /* PHOTO: foto wisuda (section Profile). Ganti background dengan:
-     background:url('foto-wisuda.jpg') center/cover no-repeat; */
-  background:linear-gradient(150deg,#182a72,#0a1440);
+  /* PHOTO: foto wisuda (section Profile) — file: images/foto-wisuda.jpg */
+  background:url('images/foto-wisuda.jpg') center/cover no-repeat, linear-gradient(150deg,#182a72,#0a1440);
   display:flex;align-items:center;justify-content:center;
   color:var(--ice);font-size:.85rem;letter-spacing:.08em;text-align:center;
   padding:24px;
@@ -268,9 +266,8 @@ section.alt{background:transparent}
   display:flex;align-items:center;justify-content:center;
   color:var(--ice);font-size:.85rem;letter-spacing:.08em;text-align:center;padding:24px;
 }
-/* PHOTO: proyek A — foto sistem proppant / Raspberry Pi.
-   Ganti background dengan: background:url('proyek-proppant.jpg') center/cover no-repeat; */
-#photo-project-a{background:linear-gradient(140deg,#17296e,#0a1440)}
+/* PHOTO: proyek A — file: images/proyek-proppant.jpg */
+#photo-project-a{background:url('images/proyek-proppant.jpg') center/cover no-repeat, linear-gradient(140deg,#17296e,#0a1440)}
 
 .project h3{
   font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;margin-bottom:8px;
@@ -352,30 +349,29 @@ section.alt{background:transparent}
 }
 
 .photo-mini-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
-  max-width:360px;justify-self:end;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  width:100%;max-width:480px;justify-self:end;align-self:start;
 }
 .photo-mini{
   position:relative;aspect-ratio:1;
-  clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
   border:1px solid var(--line);
+  border-bottom:3px solid var(--gold);
+  border-radius:6px;
+  overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  font-size:.68rem;letter-spacing:.06em;color:var(--ice);text-align:center;padding:14px;
-  transition:transform .25s ease;
+  font-size:.72rem;letter-spacing:.06em;color:var(--ice);text-align:center;padding:14px;
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
-.photo-mini:hover{transform:translateY(-4px)}
-.photo-mini:nth-child(2){transform:translateY(18px)}
-.photo-mini:nth-child(2):hover{transform:translateY(14px)}
-.photo-mini:nth-child(4){transform:translateY(18px)}
-.photo-mini:nth-child(4):hover{transform:translateY(14px)}
-/* PHOTO: foto kecil 1 (kegiatan kalibrasi). Ganti dengan background:url('mini-1.jpg') center/cover; */
-#mini-1{background:linear-gradient(150deg,#1a2c74,#0a1440)}
-/* PHOTO: foto kecil 2 (di lab / plant). Ganti dengan background:url('mini-2.jpg') center/cover; */
-#mini-2{background:linear-gradient(150deg,#152565,#0a1440)}
-/* PHOTO: foto kecil 3 (proyek elektronik). Ganti dengan background:url('mini-3.jpg') center/cover; */
-#mini-3{background:linear-gradient(150deg,#182a70,#0a1440)}
-/* PHOTO: foto kecil 4 (presentasi / seminar). Ganti dengan background:url('mini-4.jpg') center/cover; */
-#mini-4{background:linear-gradient(150deg,#12235c,#0a1440)}
+.photo-mini:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.42)}
+/* PHOTO: foto kecil 1 (kegiatan kalibrasi) — file: images/mini-1.jpg */
+#mini-1{background:url('images/mini-1.jpg') center/cover no-repeat, linear-gradient(150deg,#1a2c74,#0a1440)}
+/* PHOTO: foto kecil 2 (di lab / plant) — file: images/mini-2.jpg */
+#mini-2{background:url('images/mini-2.jpg') center/cover no-repeat, linear-gradient(150deg,#152565,#0a1440)}
+/* PHOTO: foto kecil 3 (proyek elektronik) — file: images/mini-3.jpg */
+#mini-3{background:url('images/mini-3.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: foto kecil 4 (presentasi / seminar) — file: images/mini-4.jpg */
+#mini-4{background:url('images/mini-4.jpg') center/cover no-repeat, linear-gradient(150deg,#12235c,#0a1440)}
 
 /* ---------- CERTIFICATIONS ---------- */
 .cert-grid{
@@ -444,24 +440,18 @@ section.alt{background:transparent}
   background:var(--gold);
   margin-right:8px;
 }
-/* PHOTO: scan sertifikat 1 — BNSP Instrumentation Technician.
-   Ganti background dengan: background:url('sertifikat-bnsp-instrument.jpg') center/cover no-repeat; */
-#cert-photo-1{}
-/* PHOTO: scan sertifikat 2 — K3 Migas.
-   Ganti background dengan: background:url('sertifikat-k3-migas.jpg') center/cover no-repeat; */
-#cert-photo-2{}
-/* PHOTO: scan sertifikat 3 — IWCF Level 1.
-   Ganti background dengan: background:url('sertifikat-iwcf.jpg') center/cover no-repeat; */
-#cert-photo-3{}
-/* PHOTO: scan sertifikat 4 — TOEIC.
-   Ganti background dengan: background:url('sertifikat-toeic.jpg') center/cover no-repeat; */
-#cert-photo-4{}
-/* PHOTO: scan sertifikat 5 — SNTEM (paper & presenter).
-   Ganti background dengan: background:url('sertifikat-sntem.jpg') center/cover no-repeat; */
-#cert-photo-5{}
-/* PHOTO: scan sertifikat 6 — Microsoft Office.
-   Ganti background dengan: background:url('sertifikat-office.jpg') center/cover no-repeat; */
-#cert-photo-6{}
+/* PHOTO: scan sertifikat 1 — file: images/sertifikat-bnsp-instrument.jpg */
+#cert-photo-1{background:url('images/sertifikat-bnsp-instrument.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: scan sertifikat 2 — file: images/sertifikat-k3-migas.jpg */
+#cert-photo-2{background:url('images/sertifikat-k3-migas.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: scan sertifikat 3 — file: images/sertifikat-iwcf.jpg */
+#cert-photo-3{background:url('images/sertifikat-iwcf.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: scan sertifikat 4 — file: images/sertifikat-toeic.jpg */
+#cert-photo-4{background:url('images/sertifikat-toeic.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: scan sertifikat 5 — file: images/sertifikat-sntem.jpg */
+#cert-photo-5{background:url('images/sertifikat-sntem.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
+/* PHOTO: scan sertifikat 6 — file: images/sertifikat-office.jpg */
+#cert-photo-6{background:url('images/sertifikat-office.jpg') center/cover no-repeat, linear-gradient(150deg,#182a70,#0a1440)}
 
 /* ---------- CONTACT ---------- */
 .contact-grid{
@@ -496,9 +486,8 @@ section.alt{background:transparent}
 .contact-photo{
   position:relative;width:100%;height:100%;
   clip-path:polygon(0 0, 100% 0, 100% 82%, 82% 100%, 0 100%);
-  /* PHOTO: foto profil penutup (section Contact). Ganti background dengan:
-     background:url('foto-contact.jpg') center/cover no-repeat; */
-  background:linear-gradient(150deg,#17296e,#0a1440);
+  /* PHOTO: foto profil penutup (section Contact) — file: images/foto-contact.jpg */
+  background:url('images/foto-contact.jpg') center/cover no-repeat, linear-gradient(150deg,#17296e,#0a1440);
   display:flex;align-items:center;justify-content:center;
   color:var(--ice);font-size:.85rem;letter-spacing:.08em;text-align:center;padding:24px;
 }
@@ -537,7 +526,7 @@ footer b{color:var(--gold);font-weight:700}
   .profile-grid,.project,.contact-grid{grid-template-columns:1fr;gap:40px}
   .project.flip .visual{order:-1}
   .skills-layout{grid-template-columns:1fr}
-  .photo-mini-grid{max-width:420px;justify-self:center;margin:0 auto}
+  .photo-mini-grid{max-width:480px;justify-self:center;margin:0 auto}
   .exp-grid{grid-template-columns:1fr}
   .cert-grid{grid-template-columns:repeat(2,1fr)}
   .cert-gallery{grid-template-columns:repeat(2,1fr)}
@@ -584,7 +573,7 @@ footer b{color:var(--gold);font-weight:700}
     </div>
     <div class="reveal d1">
       <div class="hex-frame">
-        <div class="hex-photo">PHOTO<br>Foto profil utama<br>(hexagon frame)</div>
+        <div class="hex-photo"></div>
       </div>
     </div>
   </div>
@@ -595,7 +584,7 @@ footer b{color:var(--gold);font-weight:700}
   <div class="wrap profile-grid">
     <div class="reveal">
       <div class="slab">
-        <div class="slab-photo">PHOTO<br>Foto wisuda<br>(diagonal slab)</div>
+        <div class="slab-photo"></div>
       </div>
     </div>
     <div class="profile-text reveal d1">
@@ -623,7 +612,7 @@ footer b{color:var(--gold);font-weight:700}
     <!-- Project A -->
     <article class="project">
       <div class="visual reveal">
-        <div class="p-photo" id="photo-project-a">PHOTO<br>Sistem pengukuran sphericity proppant<br>(Raspberry Pi 5 + kamera)</div>
+        <div class="p-photo" id="photo-project-a"></div>
       </div>
       <div class="reveal d1">
         <h3>Computer Vision — Final Project</h3>
@@ -715,10 +704,10 @@ footer b{color:var(--gold);font-weight:700}
         </div>
       </div>
       <div class="photo-mini-grid reveal d2" aria-hidden="true">
-        <div class="photo-mini" id="mini-1">PHOTO 1<br>kalibrasi</div>
-        <div class="photo-mini" id="mini-2">PHOTO 2<br>lab / plant</div>
-        <div class="photo-mini" id="mini-3">PHOTO 3<br>elektronik</div>
-        <div class="photo-mini" id="mini-4">PHOTO 4<br>seminar</div>
+        <div class="photo-mini" id="mini-1"></div>
+        <div class="photo-mini" id="mini-2"></div>
+        <div class="photo-mini" id="mini-3"></div>
+        <div class="photo-mini" id="mini-4"></div>
       </div>
     </div>
   </div>
@@ -752,27 +741,27 @@ footer b{color:var(--gold);font-weight:700}
     </div>
     <div class="cert-gallery">
       <figure class="cert-doc reveal">
-        <div class="doc-photo" id="cert-photo-1">PHOTO<br>Scan sertifikat<br>BNSP Instrumentation Technician Lv I</div>
+        <div class="doc-photo" id="cert-photo-1"></div>
         <figcaption class="doc-label">BNSP Instrumentation Technician Level I</figcaption>
       </figure>
       <figure class="cert-doc reveal d1">
-        <div class="doc-photo" id="cert-photo-2">PHOTO<br>Scan sertifikat<br>K3 Migas</div>
+        <div class="doc-photo" id="cert-photo-2"></div>
         <figcaption class="doc-label">BNSP K3 Migas — Safety Operator</figcaption>
       </figure>
       <figure class="cert-doc reveal d2">
-        <div class="doc-photo" id="cert-photo-3">PHOTO<br>Scan sertifikat<br>IWCF Level 1</div>
+        <div class="doc-photo" id="cert-photo-3"></div>
         <figcaption class="doc-label">IWCF Well Control Level 1</figcaption>
       </figure>
       <figure class="cert-doc reveal">
-        <div class="doc-photo" id="cert-photo-4">PHOTO<br>Scan sertifikat<br>TOEIC</div>
+        <div class="doc-photo" id="cert-photo-4"></div>
         <figcaption class="doc-label">TOEIC — Score 630</figcaption>
       </figure>
       <figure class="cert-doc reveal d1">
-        <div class="doc-photo" id="cert-photo-5">PHOTO<br>Scan sertifikat<br>SNTEM</div>
+        <div class="doc-photo" id="cert-photo-5"></div>
         <figcaption class="doc-label">SNTEM — Paper Author &amp; Presenter</figcaption>
       </figure>
       <figure class="cert-doc reveal d2">
-        <div class="doc-photo" id="cert-photo-6">PHOTO<br>Scan sertifikat<br>Microsoft Office</div>
+        <div class="doc-photo" id="cert-photo-6"></div>
         <figcaption class="doc-label">Applied Microsoft Office</figcaption>
       </figure>
     </div>
@@ -799,7 +788,7 @@ footer b{color:var(--gold);font-weight:700}
     </div>
     <div class="reveal d1">
       <div class="contact-photo-wrap">
-        <div class="contact-photo">PHOTO<br>Foto profil penutup<br>(diagonal cut)</div>
+        <div class="contact-photo"></div>
       </div>
     </div>
   </div>
